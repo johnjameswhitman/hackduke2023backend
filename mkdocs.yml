@@ -3,6 +3,9 @@ site_name: HackDuke 2023 Backend Workshop
 theme:
   name: material
 
+  favicon: assets/favicon.svg
+  logo: assets/hd-symbol.svg
+
   features:
     - navigation.footer
 
@@ -24,6 +27,7 @@ theme:
 
 
 markdown_extensions:
+  - admonition
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true 
