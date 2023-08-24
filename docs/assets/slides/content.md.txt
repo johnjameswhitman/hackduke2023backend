@@ -34,13 +34,14 @@ Note:
 
 ---
 
-## Lab: Install Pre-requisites
+## Lab: Install Prerequisites
 
 Make sure you have the following available on your machine:
 
 1. Time: 5m
-2. Install git and Python
+2. Install Git and Python
 3. Pull and run the source code
+4. Play with Git (time-permitting)
 
 Note:
 
@@ -66,20 +67,49 @@ Note:
 - Machine-to-machine interaction
 - Structured requests and responses
 - Usually either noun-oriented (REST) or verb-oriented (RPC)
-  - REST is also about discoverability (see HATEOS)
+  - REST is also about discoverability (see HATEOAS)
 
 ----
 
 ### What is HTTP?
 
-- Text protocol for loading documents over a network connection
-- Uniform Resource Locators point to documents
-  - TODO: structure of URL
-- Stateless protocol
+- Application protocol for loading documents over a network connection
+- Request-response
+- Stateless
+- _Uniform Resource Locators_ point to documents
+
+![structure of a URL](assets/slides/mdn_url_all.png "Structure of a URL")
+
+Credit: [MDN](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL)
+
 
 Note:
 
 - We're going to come back to URLs when we discuss security
+
+----
+
+### HTTP Request
+
+- URL
+- Method
+- Headers
+- Cookies
+
+----
+
+### HTTP Request Methods
+
+![HTTP request methods](assets/slides/wikipedia_http_methods.png "HTTP request methods")
+
+Credit: [Wikipedia](https://en.wikipedia.org/wiki/HTTP#Request_methods)
+
+----
+
+### HTTP Response
+
+- Status Codes
+- Headers
 
 ---
 

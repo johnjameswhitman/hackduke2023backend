@@ -7,7 +7,7 @@ collaborate with others. Let's demo a few of the things you can do with git.
 ## Work with branches
 
 A branch is a named series of commits. You often have one primary branch (e.g.
-`main`), with temporary branches to work on features and functionality. Some
+`main`), with short-lived branches to work on features and functionality. Some
 projects also use branches as a way to version their releases.
 
 ### Check out an existing branch
@@ -69,7 +69,7 @@ Git is all about tracking modifications to your code. Let's try that out:
 The `-a` tells git to include all _modifications_. The `-m` tells git you're
 going to pass a commit-message directly on the command-line. Without `-m` it
 will open your default command-line text editor to draft the message instead.
-Usually this is `vim`.
+Usually this is `vim` on Unix-based systems.
 
 !!! warning
 
@@ -128,4 +128,5 @@ We scratched the very basics of working with Git. For more comprehensive
 tutorials, refer to:
 
 - [the official tutorial](https://git-scm.com/docs/gittutorial), and
-- [the official book](https://git-scm.com/book/en/v2).
+- [the official book](https://git-scm.com/book/en/v2),
+- [branching strategies (Microsoft)](https://learn.microsoft.com/en-us/azure/devops/repos/git/git-branching-guidance?view=azure-devops)
