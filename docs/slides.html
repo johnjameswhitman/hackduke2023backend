@@ -15,13 +15,15 @@
 		/>
 		<link
 			rel="stylesheet"
-			href="assets/reveal.js@4.3.1/dist/theme/black.css"
+			href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/dist/theme/black.css"
 			id="theme"
 		/>
 		<link rel="icon" href="assets/favicon.svg">
 
 		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="assets/reveal.js@4.3.1/plugin/highlight/monokai.css">
+		<!-- https://highlightjs.org/examples -->
+<!--		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@4.3.1/plugin/highlight/monokai.css">-->
+		<link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.8.0/styles/a11y-dark.min.css">
 	</head>
 	<body>
 		<div class="reveal">
@@ -51,6 +53,7 @@
 				progress: true,
 				center: true,
 				hash: true,
+				slideNumber: true,
 
 				// mermaid initialize config
 				mermaid: {
