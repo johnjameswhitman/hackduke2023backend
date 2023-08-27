@@ -115,6 +115,25 @@ Credit: [Wikipedia](https://en.wikipedia.org/wiki/HTTP#Request_methods)
 
 ----
 
+<section id="sample_side_by_side">
+    <h2>Side By Side</h2>
+    <div class="ulist">
+        <img src="assets/slides/wikipedia_http_methods.png" alt="Websocket" width="50%" style="float: right">
+        <ul style="width: 40%;">
+            <li><p>Foo</li>
+            <li><p>Bar</p></li>
+            <li><p>Baz</p></li>
+        </ul>
+    </div>
+</section>
+
+Note:
+
+- foo
+- bar
+
+----
+
 ### HTTP Response
 
 - Status Codes
