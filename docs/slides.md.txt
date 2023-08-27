@@ -95,7 +95,7 @@ Note:
 
 ### HTTP Request
 
-<ins>**URL**</ins> : Method : Headers : Cookies : Body
+URL <span style="opacity:0.1;">: Method : Headers : Cookies : Body</span>
 
 _Uniform Resource Locators_ point to documents
 
@@ -107,7 +107,7 @@ Credit: [MDN](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/We
 
 ### HTTP Request
 
-<sub>URL :</sub> **Method** <sub>: Headers : Cookies : Body</sub>
+<span style="opacity:0.1;">URL :</span> Method <span style="opacity:0.1;">: Headers : Cookies : Body</span>
 
 ![HTTP request methods](assets/slides/wikipedia_http_methods.png "HTTP request methods")
 
