@@ -1,5 +1,7 @@
 site_name: HackDuke 2023 Backend Workshop
 
+dev_addr: 127.0.0.1:8001
+
 theme:
   name: material
 
