@@ -68,8 +68,8 @@ Git is all about tracking modifications to your code. Let's try that out:
 
 The `-a` tells git to include all _modifications_. The `-m` tells git you're
 going to pass a commit-message directly on the command-line. Without `-m` it
-will open your default command-line text editor to draft the message instead.
-Usually this is `vim` on Unix-based systems.
+will open your shell's default text editor to draft the message instead. Usually
+this is `vim` on Unix-based systems.
 
 !!! warning
 
