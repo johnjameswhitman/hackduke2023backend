@@ -34,15 +34,25 @@ pytest==7.4.0
     #   pytest-django
 pytest-django==4.5.2
     # via -r requirements/development.in
+pyyaml==6.0.1
+    # via responses
 requests==2.31.0
-    # via -r requirements/deployment.in
+    # via
+    #   -r requirements/deployment.in
+    #   responses
+responses==0.23.3
+    # via -r requirements/development.in
 sqlparse==0.4.4
     # via django
 tomli==2.0.1
     # via pytest
+types-pyyaml==6.0.12.11
+    # via responses
 typing-extensions==4.7.1
     # via
     #   asgiref
     #   pydantic
 urllib3==2.0.4
-    # via requests
+    # via
+    #   requests
+    #   responses
