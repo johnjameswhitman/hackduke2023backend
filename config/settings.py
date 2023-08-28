@@ -50,7 +50,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "hackduke2023backend.urls"
+ROOT_URLCONF = "config.urls"
 
 TEMPLATES = [
     {
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "hackduke2023backend.wsgi.application"
+WSGI_APPLICATION = "config.wsgi.application"
 
 
 # Database
