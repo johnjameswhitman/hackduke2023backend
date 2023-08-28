@@ -1,6 +1,5 @@
 import json
 import pathlib
-from typing import TextIO
 
 import pytest
 import responses
@@ -43,4 +42,8 @@ class TestNationalWeatherService:
         weather_alerts = national_weather_service.get_alerts(config)
 
         # Assert
-        assert weather_alerts
+        assert len(weather_alerts) == 3
+        assert (
+            "urn:oid:2.49.0.1.840.0.f4b98ce74ca69c0fd4f347d2aa8e1b03efdd4bdf.001.1"
+            in [weather_alert.id for weather_alert in weather_alerts]
+        )
