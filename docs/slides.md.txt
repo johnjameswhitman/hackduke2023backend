@@ -150,3 +150,28 @@ from foo import bar
 def baz(quux: str) -> bool:
   return quux == "True"
 ```
+
+---
+
+## API Entities
+
+<div class="mermaid">
+  <pre>
+    erDiagram
+      User {
+        int id
+        string first_name
+        string last_name
+      }
+      WeatherAlertConfig {
+        int id
+        int user_id
+        string state_abbreviation
+        enum severity "Add me!"
+      }
+      User ||--o{ WeatherAlertConfig : has
+  </pre>
+</div>
+
+Our goal is going to be to include a severity toggle onto the
+`WeatherAlertConfig`.
