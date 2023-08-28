@@ -43,23 +43,26 @@ class NationalWeatherService:
     For docs see: https://www.weather.gov/documentation/services-web-api
     """
 
+    ALERTS_URL: str = "https://api.weather.gov/alerts/active"
+
     def get_alerts(self, config: WeatherAlertConfig) -> list[WeatherAlert]:
         """Fetches alerts for a given WeatherAlertConfig."""
         res = requests.get(
-            "https://api.weather.gov/alerts/active",
+            self.ALERTS_URL,
             params={"area": config.state_abbreviation},
         )
 
         weather_alerts = []
         for alert_data in res.json().get("features", []):
+            properties = alert_data["properties"]
             weather_alerts.append(
                 WeatherAlert(
-                    id=alert_data["id"],
-                    status=WeatherAlertStatus(alert_data["status"]),
-                    severity=WeatherAlertSeverity(alert_data["severity"]),
-                    headline=alert_data["headline"],
-                    description=alert_data["description"],
-                    instruction=alert_data["instruction"],
+                    id=properties["id"],
+                    status=WeatherAlertStatus(properties["status"]),
+                    severity=WeatherAlertSeverity(properties["severity"]),
+                    headline=properties["headline"],
+                    description=properties["description"],
+                    instruction=properties["instruction"],
                 )
             )
 
