@@ -11,13 +11,12 @@ from ..services import NationalWeatherService
 
 @pytest.fixture(scope="function")
 def mocked_responses():
-    """MAGIC WARNING: pytest will 'inject' mocked_responses wherever you specify it as an argument to a test method."""
+    """Returns a mock that you can use to fake responses from calls to the requests library.
+
+    MAGIC WARNING: pytest will 'inject' mocked_responses wherever you specify it as an argument to a test method.
+    """
     with responses.RequestsMock() as _mocked_responses:
         yield _mocked_responses
-
-
-def _get_fixture(fixture: str) -> TextIO:
-    """Retrieves a file from under fixtures."""
 
 
 class TestNationalWeatherService:
@@ -27,7 +26,9 @@ class TestNationalWeatherService:
         config = WeatherAlertConfig(state_abbreviation="NC")
         national_weather_service = NationalWeatherService()
 
-        fixture_path = pathlib.Path(__file__).parent / f"fixtures/national_weather_service.json"
+        fixture_path = (
+            pathlib.Path(__file__).parent / f"fixtures/national_weather_service.json"
+        )
         with fixture_path.open() as fixture_file:
             nws_data = json.load(fixture_file)
 
