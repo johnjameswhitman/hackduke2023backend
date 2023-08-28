@@ -1,3 +1,5 @@
+"""CRUD operations on Weather Alerts."""
+
 from django.http import HttpRequest
 from django.shortcuts import get_object_or_404
 from ninja import ModelSchema, Router, Schema
@@ -12,33 +14,37 @@ class WeatherAlertRequest(Schema):
 
 
 class WeatherAlertResponse(ModelSchema):
+    foo: str = "bar"
+
     class Config:
         model = WeatherAlertConfig
         model_fields = "__all__"
 
 
-@router.get("/", response=list[WeatherAlertResponse])
+@router.get("/alerts", response=list[WeatherAlertResponse])
 def list_weather_alerts(request) -> list[WeatherAlertConfig]:
     return WeatherAlertConfig.objects.all()
 
 
-@router.post("/", response=WeatherAlertResponse)
+@router.post("/alerts", response=WeatherAlertResponse)
 def create_weather_alert(
     request: HttpRequest, data: WeatherAlertRequest
 ) -> WeatherAlertConfig:
-    weather_alert_config = WeatherAlertConfig(bar=data.bar)
+    weather_alert_config = WeatherAlertConfig(
+        state_abbreviation=data.state_abbreviation
+    )
     weather_alert_config.save()
     return weather_alert_config
 
 
-@router.get("/{weather_alert_config_id}", response={200: WeatherAlertResponse})
+@router.get("/alerts/{weather_alert_config_id}", response={200: WeatherAlertResponse})
 def read_weather_alert(
     request: HttpRequest, weather_alert_config_id: int
 ) -> WeatherAlertConfig:
     return get_object_or_404(WeatherAlertConfig, pk=weather_alert_config_id)
 
 
-@router.put("/{weather_alert_config_id}", response=WeatherAlertResponse)
+@router.put("/alerts/{weather_alert_config_id}", response=WeatherAlertResponse)
 def update_weather_alert(
     request: HttpRequest, weather_alert_config_id: int, data: WeatherAlertRequest
 ) -> WeatherAlertConfig:
@@ -51,7 +57,7 @@ def update_weather_alert(
     return weather_alert_config
 
 
-@router.delete("/{weather_alert_config_id}", response={204: None})
+@router.delete("/alerts/{weather_alert_config_id}", response={204: None})
 def delete_weather_alert(
     request: HttpRequest, weather_alert_config_id: int
 ) -> tuple[int, None]:
