@@ -1,3 +1,4 @@
 django
 django-ninja
+djangorestframework-simplejwt[crypto]
 requests
