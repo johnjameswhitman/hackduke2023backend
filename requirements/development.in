@@ -1,0 +1,4 @@
+-r deployment.in
+
+pytest
+pytest-django
