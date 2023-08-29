@@ -1,4 +1,5 @@
 django
+django-health-check
 django-ninja
 djangorestframework-simplejwt[crypto]
 requests

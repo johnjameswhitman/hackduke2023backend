@@ -4,6 +4,7 @@
 #
 #    pip-compile --output-file=requirements/development.txt --resolver=backtracking requirements/development.in
 #
+
 asgiref==3.7.2
     # via django
 certifi==2023.7.22
@@ -17,9 +18,12 @@ cryptography==41.0.3
 django==4.2.4
     # via
     #   -r requirements/deployment.in
+    #   django-health-check
     #   django-ninja
     #   djangorestframework
     #   djangorestframework-simplejwt
+django-health-check==3.17.0
+    # via -r requirements/deployment.in
 django-ninja==0.22.2
     # via -r requirements/deployment.in
 djangorestframework==3.14.0
