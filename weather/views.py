@@ -1,6 +1,7 @@
 """CRUD operations on Weather Alerts."""
 import logging
 
+import ninja.compatibility.datastructures
 from django.http import HttpRequest
 from django.shortcuts import get_object_or_404
 from ninja import ModelSchema, Router, Schema
@@ -32,7 +33,7 @@ def create_weather_alert(
     request: HttpRequest, data: WeatherAlertRequest
 ) -> WeatherAlertConfig:
     weather_alert_config = WeatherAlertConfig(
-        user=request.user, state_abbreviation=data.state_abbreviation.upper()
+        user=request.auth, state_abbreviation=data.state_abbreviation.upper()
     )
     weather_alert_config.save()
     return weather_alert_config
@@ -42,7 +43,7 @@ def create_weather_alert(
 def read_weather_alert(
     request: HttpRequest, weather_alert_config_id: int
 ) -> WeatherAlertConfig:
-    queryset = WeatherAlertConfig.objects.filter(user=request.user)
+    queryset = WeatherAlertConfig.objects.filter(user=request.auth)
     return get_object_or_404(queryset, pk=weather_alert_config_id)
 
 
