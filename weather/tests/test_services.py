@@ -6,6 +6,7 @@ import responses
 
 from ..models import WeatherAlertConfig
 from ..services import NationalWeatherService
+from .fixtures import get_text_fixture
 
 
 @pytest.fixture(scope="function")
@@ -24,12 +25,7 @@ class TestNationalWeatherService:
         # Arrange
         config = WeatherAlertConfig(state_abbreviation="NC")
         national_weather_service = NationalWeatherService()
-
-        fixture_path = (
-            pathlib.Path(__file__).parent / f"fixtures/national_weather_service.json"
-        )
-        with fixture_path.open() as fixture_file:
-            nws_data = json.load(fixture_file)
+        nws_data = json.loads(get_text_fixture("national_weather_service.json"))
 
         # Below overrides the requests library get to the NWS API and forces it to return our fake data.
         mocked_responses.get(
