@@ -12,12 +12,17 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 logger = logging.getLogger(__name__)
 
 
+# There may be a better way to do the below that automatically sets the request user, e.g.:
+# https://github.com/vitalik/django-ninja/issues/305#issuecomment-1186234533
 class JWTAuthRequired(HttpBearer):
     def authenticate(self, request: HttpRequest, token: str) -> Optional[Any]:
         jwt_authenticator = JWTAuthentication()
         try:
             response = jwt_authenticator.authenticate(request)
             if response is not None:
+                user, _ = response
+                request.user = user
+                logger.debug("JWT authentication successful.", extra={"user": user})
                 return True  # 200 OK
             return False  # 401
         except:
