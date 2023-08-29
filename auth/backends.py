@@ -16,6 +16,10 @@ logger = logging.getLogger(__name__)
 # https://github.com/vitalik/django-ninja/issues/305#issuecomment-1186234533
 class JWTAuthRequired(HttpBearer):
     def authenticate(self, request: HttpRequest, token: str) -> Optional[Any]:
+        """Authenticates request using JWT.
+
+        Ninja will set request.auth using return value from this method.
+        """
         jwt_authenticator = JWTAuthentication()
         try:
             response = jwt_authenticator.authenticate(request)
@@ -23,9 +27,9 @@ class JWTAuthRequired(HttpBearer):
                 user, _ = response
                 request.user = user
                 logger.debug("JWT authentication successful.", extra={"user": user})
-                return True  # 200 OK
-            return False  # 401
+                return user  # 200 OK
+            return None  # 401
         except:
             # Any exception we want it to return False i.e 401
             logger.exception("Something went wrong authenticating JWT.")
-            return False
+            return None
