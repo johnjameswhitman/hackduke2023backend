@@ -37,7 +37,7 @@ class WeatherAlertDetailResponse(WeatherAlertResponse):
 
 @router.get("/alerts", response=list[WeatherAlertResponse])
 def list_weather_alerts(request) -> list[WeatherAlertConfig]:
-    return WeatherAlertConfig.objects.all()
+    return WeatherAlertConfig.objects.filter(user=request.auth)
 
 
 @router.post("/alerts", response=WeatherAlertResponse)
@@ -51,21 +51,21 @@ def create_weather_alert(
     return weather_alert_config
 
 
-@router.get("/alerts/{weather_alert_config_id}", response={200: WeatherAlertResponse})
+@router.get("/alerts/{weather_alert_config_id}", response=WeatherAlertDetailResponse)
 def read_weather_alert(
     request: HttpRequest, weather_alert_config_id: int
 ) -> WeatherAlertConfig:
     queryset = WeatherAlertConfig.objects.filter(user=request.auth)
-    return get_object_or_404(queryset, pk=weather_alert_config_id)
+    weather_alert_config = get_object_or_404(queryset, pk=weather_alert_config_id)
+    return WeatherAlertDetailResponse.from_model(weather_alert_config)
 
 
 @router.put("/alerts/{weather_alert_config_id}", response=WeatherAlertResponse)
 def update_weather_alert(
     request: HttpRequest, weather_alert_config_id: int, data: WeatherAlertRequest
 ) -> WeatherAlertConfig:
-    weather_alert_config = get_object_or_404(
-        WeatherAlertConfig, pk=weather_alert_config_id
-    )
+    queryset = WeatherAlertConfig.objects.filter(user=request.auth)
+    weather_alert_config = get_object_or_404(queryset, pk=weather_alert_config_id)
     for field, value in data.dict(exclude_none=True).items():
         setattr(weather_alert_config, field, value)
     weather_alert_config.save()
@@ -76,8 +76,7 @@ def update_weather_alert(
 def delete_weather_alert(
     request: HttpRequest, weather_alert_config_id: int
 ) -> tuple[int, None]:
-    weather_alert_config = get_object_or_404(
-        WeatherAlertConfig, pk=weather_alert_config_id
-    )
+    queryset = WeatherAlertConfig.objects.filter(user=request.auth)
+    weather_alert_config = get_object_or_404(queryset, pk=weather_alert_config_id)
     weather_alert_config.delete()
     return 204, None
