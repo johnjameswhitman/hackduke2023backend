@@ -1,12 +1,12 @@
 """CRUD operations on Weather Alerts."""
 import logging
 
-import ninja.compatibility.datastructures
 from django.http import HttpRequest
 from django.shortcuts import get_object_or_404
 from ninja import ModelSchema, Router, Schema
 
 from .models import WeatherAlertConfig
+from .services import NationalWeatherService, WeatherAlert
 
 logger = logging.getLogger(__name__)
 router = Router()
@@ -21,6 +21,18 @@ class WeatherAlertResponse(ModelSchema):
     class Config:
         model = WeatherAlertConfig
         model_fields = "__all__"
+
+
+class WeatherAlertDetailResponse(WeatherAlertResponse):
+    alerts: list[WeatherAlert]
+
+    @classmethod
+    def from_model(cls, model: WeatherAlertConfig) -> "WeatherAlertDetailResponse":
+        """Populates instance with model and response from NWS API."""
+        national_weather_service = NationalWeatherService()
+        alerts = national_weather_service.get_alerts(model)
+        kwargs = {**model.__dict__, "alerts": alerts}  # Merge model and alerts.
+        return cls(**kwargs)  # "**" unpacks dict into keyword arguments.
 
 
 @router.get("/alerts", response=list[WeatherAlertResponse])
