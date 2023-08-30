@@ -1,0 +1,121 @@
+## Background on APIs
+
+- What is an API?
+- What is HTTP?
+- How do you secure an API?
+
+---
+
+### What is an API?
+
+- Machine-to-machine interaction
+- Structured requests and responses
+- Usually either noun-oriented (REST) or verb-oriented (RPC)
+  - REST is also about discoverability (see HATEOAS)
+
+---
+
+### What is HTTP?
+
+- Application protocol for loading documents over a network connection
+- Request &rarr; Response
+- Stateless
+
+Note:
+
+- We're going to come back to URLs when we discuss security
+
+---
+
+### HTTP Request
+
+- URL
+- Method
+- Headers
+- Cookies
+- Body
+
+----
+
+### HTTP Request
+
+URL <span style="opacity:0.1;">: Method : Headers : Cookies : Body</span>
+
+_Uniform Resource Locators_ point to documents
+
+![structure of a URL](01_background/mdn_url_all.png "Structure of a URL")
+
+Credit: [MDN](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL)
+
+----
+
+### HTTP Request
+
+<span style="opacity:0.1;">URL :</span> Method <span style="opacity:0.1;">: Headers : Cookies : Body</span>
+
+![HTTP request methods](01_background/wikipedia_http_methods.png "HTTP request 
+methods")
+
+Credit: [Wikipedia](https://en.wikipedia.org/wiki/HTTP#Request_methods)
+
+----
+
+### HTTP Request
+
+<span style="opacity:0.1;">URL : Method :</span> Headers <span style="opacity:0.1;">: Cookies : Body</span>
+
+TODO: screenshot of headers
+
+Note:
+
+- Headers are key-value pairs
+- Important ones are `Content-Type` and `Accept`
+- Demo google.com in Chrome dev tools
+
+----
+
+### HTTP Request
+
+<span style="opacity:0.1;">URL : Method : Headers :</span> Cookies <span style="opacity:0.1;">: Body</span>
+
+TODO: screenshot of cookies
+
+Note:
+
+- Cookies are also key-value pairs!
+- Cookies are actually sent in the headers
+- Demo google.com in Chrome dev tools
+
+----
+
+### HTTP Request
+
+<span style="opacity:0.1;">URL : Method : Headers : Cookies :</span> Body
+
+JSON body
+
+TODO: Screenshot of JSON body
+
+----
+
+### HTTP Request
+
+<span style="opacity:0.1;">URL : Method : Headers : Cookies :</span> Body
+
+Form body
+
+TODO: Screenshot of form body
+
+Note:
+
+- Form body lets you pass files (which you cannot do with JSON body)
+- You cannot nest forms, so one trick is to pass JSON in a form-field
+
+
+---
+
+### HTTP Response
+
+- Status Codes
+- Headers
+- Body

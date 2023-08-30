@@ -1,0 +1,61 @@
+# Backend Workshop
+## HackDuke 2023
+
+View me at [**bit.ly/hd23be**](https://bit.ly/hd23be)
+
+---
+
+<!-- 0. INTRO -->
+
+## Who am I?
+
+- Pratt '08 with a BSE in BME
+- Worked in consulting and engineering at Accenture, Google and now [Galileo Health](https://galileo.io)
+- Live in NYC with my wonderful wife
+
+Note:
+
+- Clock: 1m
+- Chat about talk with Dean Simmons on changing majors
+
+---
+
+## Why are we here?
+
+- Learn what an API is
+- Write an API with Python
+
+Note:
+
+- Clock: 3m
+- Session is interactive! I'm going to ask you questions and don't hesitate to ask me questions.
+- Poll for experience writing an API
+- Poll for experience working in Python
+
+----
+
+### Here's what we're going to build
+
+TODO: diagram of API or screenshot
+
+Note:
+
+- Fire up browser and show off working API
+
+---
+
+## Lab: Install Prerequisites
+
+Make sure you have the following available on your machine:
+
+1. Time: 5m
+2. Install Git and Python
+3. Pull and run the source code
+4. Play with Git (time-permitting)
+
+Note:
+
+- Clock: 13m
+- If you finish early, then help your neighbors!
+- Docker optional
+- TODO: jump to lab steps
