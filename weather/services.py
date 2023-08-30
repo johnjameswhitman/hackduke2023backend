@@ -1,8 +1,10 @@
 import logging
 from enum import Enum
+from functools import partial
 from typing import Optional
 
 import requests
+from django.core.cache import cache
 from ninja.schema import Schema
 
 from .models import WeatherAlertConfig
@@ -47,18 +49,32 @@ class NationalWeatherService:
     """
 
     ALERTS_URL: str = "https://api.weather.gov/alerts"
+    ALERTS_CACHE_KEY_TEMPLATE: str = f"{__name__}.alerts.{{area}}.{{limit}}"
+
+    def _get_remote_alerts(self, area: str, limit: int) -> dict:
+        """Fetches alerts from the NWS API."""
+        return requests.get(
+            self.ALERTS_URL,
+            params={"area": area, "limit": limit},
+        ).json()
 
     def get_alerts(
         self, config: WeatherAlertConfig, limit: int = 10
     ) -> list[WeatherAlert]:
         """Fetches alerts for a given WeatherAlertConfig."""
-        res = requests.get(
-            self.ALERTS_URL,
-            params={"area": config.state_abbreviation, "limit": limit},
+        alerts = cache.get_or_set(
+            self.ALERTS_CACHE_KEY_TEMPLATE.format(
+                area=config.state_abbreviation, limit=limit
+            ),
+            # default can be a value or a no-arg callable. "partial" returns a callable that will
+            # defer execution of self._get_remote_alerts with the given arguments until it is called.
+            default=partial(
+                self._get_remote_alerts, area=config.state_abbreviation, limit=limit
+            ),
         )
 
         weather_alerts = []
-        for alert_data in res.json().get("features", []):
+        for alert_data in alerts.get("features", []):
             properties = alert_data["properties"]
             weather_alerts.append(
                 WeatherAlert(
