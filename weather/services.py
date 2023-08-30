@@ -1,9 +1,13 @@
-from dataclasses import dataclass
+import logging
 from enum import Enum
+from typing import Optional
 
 import requests
+from ninja.schema import Schema
 
 from .models import WeatherAlertConfig
+
+logger = logging.getLogger(__name__)
 
 
 class WeatherAlertStatus(str, Enum):
@@ -22,8 +26,7 @@ class WeatherAlertSeverity(str, Enum):
     UNKNOWN = "Unknown"
 
 
-@dataclass
-class WeatherAlert:
+class WeatherAlert(Schema):
     """Lightweight entity based on Alert from Weather API.
 
     For docs see Schemas > Alert: https://www.weather.gov/documentation/services-web-api
@@ -34,7 +37,7 @@ class WeatherAlert:
     severity: WeatherAlertSeverity
     headline: str
     description: str
-    instruction: str
+    instruction: Optional[str]
 
 
 class NationalWeatherService:
@@ -43,13 +46,15 @@ class NationalWeatherService:
     For docs see: https://www.weather.gov/documentation/services-web-api
     """
 
-    ALERTS_URL: str = "https://api.weather.gov/alerts/active"
+    ALERTS_URL: str = "https://api.weather.gov/alerts"
 
-    def get_alerts(self, config: WeatherAlertConfig) -> list[WeatherAlert]:
+    def get_alerts(
+        self, config: WeatherAlertConfig, limit: int = 10
+    ) -> list[WeatherAlert]:
         """Fetches alerts for a given WeatherAlertConfig."""
         res = requests.get(
             self.ALERTS_URL,
-            params={"area": config.state_abbreviation},
+            params={"area": config.state_abbreviation, "limit": limit},
         )
 
         weather_alerts = []
@@ -65,5 +70,10 @@ class NationalWeatherService:
                     instruction=properties["instruction"],
                 )
             )
+
+        if weather_alerts:
+            logger.debug("Found alerts.", extra={"count": len(weather_alerts)})
+        else:
+            logger.warning("Got no weather alerts!")
 
         return weather_alerts
