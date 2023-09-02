@@ -95,6 +95,7 @@ LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
     "formatters": {
+        # JSON log-format is easier for log-aggregators to parse.
         "json": {
             "()": "pythonjsonlogger.jsonlogger.JsonFormatter",
         }
