@@ -1,0 +1,187 @@
+## Weather API
+
+- Simple API that tracks weather alerts
+- Model data
+- Update an endpoint
+
+Note:
+
+- Modeling data means "figuring out its shape and relations"
+- An endpoint is simply a path in the API where we'll send requests and get 
+  responses
+
+----
+
+### Demo of API
+
+TODO: screenshot of API docs
+
+Note:
+
+- Open API: http://127.0.0.1:8000/api/docs
+- Generate JWT
+
+---
+
+## Why Python?
+
+- Readable
+- Forgiving
+- Broadly applicable (back end, ML/AI, automation)
+
+Note:
+
+- There's a joke that Python's never the best language for anything, but it's 
+  second-best language for everything.
+
+---
+
+## Why Django?
+
+- Batteries included web framework
+- Huge community
+
+Note:
+
+- Django comes with a DB integration, admin dashboard, user-management out of 
+  the box
+- Huge community means lots of wisdom online, and tons of packages
+- Someone else has already solved most of the problems you'll run into
+- Alternatives: Flask or FastAPI + SQLAlchemy
+
+---
+
+## Modeling Data
+
+----
+
+### Relational Data
+
+- _Entity_ is a fancy term for _noun_
+- Entities _relate_ to each other
+- Usually stored in databases
+
+<div class="mermaid">
+  <pre>
+    erDiagram
+      User {
+        int id PK
+        string username
+      }
+      WeatherAlertConfig {
+        int id PK
+        int user_id FK
+        string state_abbreviation
+      }
+      User ||--o{ WeatherAlertConfig : "has many"
+  </pre>
+</div>
+
+Note:
+
+- We'll be using SQLite as our DB today
+- In production, you'd likely use PostgreSQL or MySQL
+
+----
+
+### SQL
+
+- Structured Query Language
+- Declarative (describes desired output)
+- How you interact with databases
+
+```sql
+SELECT last_login
+FROM auth_user
+WHERE username = 'admin';
+```
+
+----
+
+### ORM
+
+- Object relational mapper
+- Represent database records as Python classes
+- Django sets up tables for us using _migrations_
+
+```python[1|3|4]
+class WeatherAlertConfig(models.Model):
+    """Configuration for an alert."""
+    state_abbreviation = models.CharField(max_length=2)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+```
+
+----
+
+### Using the ORM
+
+Django uses `querysets` to generate SQL. 
+
+TODO: code sample
+
+---
+
+## Data Modeling Lab
+
+[bit.ly/hd23be](https://bit.ly/hd23be) > Lab > 03 Data Modeling
+
+1. Time: 5m
+2. TODO: set up lab (add severity)
+
+<div class="mermaid">
+  <pre>
+    erDiagram
+      User {
+        int id PK
+        string username
+      }
+      WeatherAlertConfig {
+        int id PK
+        int user_id FK
+        string state_abbreviation
+        enum severity "Add me!"
+      }
+      User ||--o{ WeatherAlertConfig : "has many"
+  </pre>
+</div>
+
+---
+
+## API Endpoints
+
+- URL
+- HTTP Method
+- _Deserialize_ request
+- _Serialize_ response
+- Auth
+
+----
+
+### CRUD
+
+TODO: CRUD/HTTP method mapping
+
+----
+
+### Serialization / Deserialization
+
+TODO: Django Ninja Schema code sample
+
+----
+
+### AutheNtication
+
+TODO: Code sample of Django JWT
+
+Note:
+
+- API authenticates with JSON Web Tokens
+- JWTs prove who sender is (AuthN)
+- JWTs do not necessarily provide authorization (but can carry role info)
+
+---
+
+## API Endpoint Lab
+
+1. Time: 10m
+2. TODO: set up lab (wire severity into endpoints)

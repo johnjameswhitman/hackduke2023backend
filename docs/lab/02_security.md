@@ -3,18 +3,20 @@
 ## Intro
 
 The idea behind CORS is to guard your API against unauthorized requests from 
-third party sites. For example, banks want to avoid random websites from using
+third party sites. For example, banks want to prevent random websites from using
 the bank's API to steal customer funds by issuing a request with javascript
 while the customer is on the malicious website but logged into their bank from
 a different tab.
 
-All browsers pay attention to a special `access-control-allow-origin` header 
-that your API sends back in responses. This provides a list of allowed 
-_origins_, which are the combination of `protocol://domain:port`.
+All browsers respect a special `access-control-allow-origin` header that your
+API sends back in responses. This provides a list of allowed _origins_, which 
+are the combination of `protocol://domain:port`.
 
 ![CORS header](02_security/cors_demo_header.png "cors header")
 
-The API configures that header within `config/settings.py` as follows:
+The API configures that header within
+[`config/settings.py`](https://github.com/johnjameswhitman/hackduke2023backend/blob/0f05f07e08af798ea1aea85a10734f5433dee29c/config/settings.py#L31-L33)
+as follows:
 
 ```
 CORS_ALLOWED_ORIGINS = [
@@ -28,31 +30,34 @@ that to your project's settings.
 
 ## Setup
 
-Let's demo CORS with the local API. It will only work if you're viewing this 
-page from a development mkdocs server running from an origin of
+Let's demo CORS with the local API. It will only work if you're viewing this page
+from a development mkdocs server running from an origin of
 `http://127.0.0.1:8001`...
 
-- You're currently viewing this page from origin: <pre id="corsDemoLocation">thinking...</pre>
+- You're currently viewing this page from the origin: <pre id="corsDemoLocation">thinking...</pre>
 - Therefore, the API will <b id="corsDemoAccept">thinking...</b> your 
   request.
 
 From the root of the repository run `mkdocs serve`, and it will start serving
 this documentation site from your local machine.
 
+If you don't already have the API running locally, open up another shell and run:
+`python manage.py runserver`.
+
 ## Demo
 
 Below is a form that'll transfer some "meal points" using a dummy endpoint in 
 the API. Let's try it from two different _origins_. Open each of these links in
-different tabs:
+different tabs and then click _Transfer_ below:
 
-- [`http://127.0.0.1:8001/lab/02_security/`](http://127.0.0.1:8001/lab/02_security/)
-- [`http://localhost:8001/lab/02_security/`](http://localhost:8001/lab/02_security/)
+- [`http://127.0.0.1:8001/lab/02_security/`](http://127.0.0.1:8001/lab/02_security/#demo)
+- [`http://localhost:8001/lab/02_security/`](http://localhost:8001/lab/02_security/#demo)
 
 !!! Note
 
     `127.0.0.1` and `localhost` are both addresses that point back to your 
     local machine; however, because they're different domains each address 
-    represents a different origin.
+    represents a different _origin_.
 
 ### Transfer "meal points"
 

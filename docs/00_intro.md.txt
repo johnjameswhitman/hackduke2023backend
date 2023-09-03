@@ -22,7 +22,8 @@ Note:
 
 ## Why are we here?
 
-We're going to build an API with Python
+- Learn about APIs
+- Build one with Python
 
 Note:
 

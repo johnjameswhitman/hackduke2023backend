@@ -48,6 +48,16 @@ Tell the system to _complete_ a _todo_.
 POST api/todos/{todo}/complete
 ```
 
+Note:
+
+- Why use verb-oriented over noun-oriented? 
+- Usually you can find a way to represent things one way or the other, but it 
+  can be clunky to think of everything in terms of nouns.
+- Pretend you had an IoT cat door that lets your cat outside. Does it make more 
+  sense to have an endpoint that:
+  - updates door "resource" to have a status of "open"
+  - simply "opens the door"
+
 ---
 
 ### What is HTTP?
@@ -184,21 +194,19 @@ TODO: screenshot
 ## Security
 
 - HTTPS and TLS
-- Cross-origin security
 - AutheNtication and AuthoriZation
-
-Note:
-
-- AuthN establishes _who_ you are
-- AuthZ establishes _what_ you can do
+- Cross-origin security
 
 ----
 
 ### [TLS][tls] enables [HTTPS][https]
 
 - Encrypts HTTP request and response 
-- Handshake: asymmetric encryption (public certificate, private key, RSA)
-- Content exchange: Symmetric encryption (shared key, AES)
+- Handshake: asymmetric encryption (public certificate, private key, often RSA)
+- Content exchange: symmetric encryption (shared key, often AES)
+
+[https]: https://en.wikipedia.org/wiki/HTTPS
+[tls]: https://en.wikipedia.org/wiki/Transport_Layer_Security
 
 Note:
 
@@ -211,16 +219,21 @@ Note:
   path, query, fragment, headers and body, and the server will encrypt the 
   response data.
 
-[https]: https://en.wikipedia.org/wiki/HTTPS
-[tls]: https://en.wikipedia.org/wiki/Transport_Layer_Security
+----
+
+### AutheNtication and AuthoriZation
+
+- AuthN establishes _who_ you are
+- AuthZ establishes _what_ you can do
 
 ----
 
 ### Cross-Origin Security
 
+- What is an [origin][rfc6454_origin]? `scheme://domain:port`
+- What is cross-origin? JS at origin A &rarr; API at origin B
 - Why? Prevent badguys.com from moving money at yourbank.com
 - How? Configure [cross-origin resource sharing][cors]
-- [Origin][rfc6454_origin]: `scheme://domain:port`
 
 [cors]: https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
 [rfc6454_origin]: https://datatracker.ietf.org/doc/html/rfc6454#section-3.2
@@ -228,3 +241,14 @@ Note:
 Note:
 
 - [Julia Evans comic](https://drawings.jvns.ca/cors/)
+- Our Django API configures CORS using `django-cors-headers`
+
+---
+
+## CORS Lab
+
+[bit.ly/hd23be](https://bit.ly/hd23be) > Lab > 02 CORS Demo
+
+1. Time: 5m
+2. Run a local copy of the lab docs
+3. Test out allowed and disallowed origins

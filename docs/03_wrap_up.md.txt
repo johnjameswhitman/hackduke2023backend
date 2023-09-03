@@ -1,0 +1,56 @@
+## Wrap up
+
+- Learned about APIs
+- Built one with Python
+
+---
+
+## Questions?
+
+---
+
+## Production
+
+- Docker
+- PaaS
+- PostgreSQL or MySQL
+- S3
+
+Note:
+
+- Docker removes the need to worry about Windows vs macOS vs Linux
+- Make it easy on yourself by using a PaaS
+- SQLite is in-vogue, but PostgreSQL and MySQL have better tooling today
+- Many providers offer S3-compatible storage; also, check out `django-storages`
+
+---
+
+## Scaling
+
+- Contributors
+- Lines of code
+- Performance
+
+Note:
+
+- There are many different kinds of _scaling_. In order of importance...
+- Make it easy to scale **contributors** with tight feedback loops (quick 
+  development setup, easy-to-run test suite, design/code reviews)
+- Make it easy to scale **lines of code** by clarifying intent (tests, types and 
+  docs)
+- Don't focus on **performance** until it's been shown to be an issue; avoid 
+  premature optimization!
+
+---
+
+## Observability
+
+- Metrics - long-lived, low fidelity, for dashboards
+- Logs - medium-lived, interesting events in code
+- Traces - short-lived, high fidelity, for realtime debugging
+
+Note:
+
+- Logs are good enough early on, especially a hack-a-thon
+- If you're operating a production service you'll quickly want insights about 
+  how things are working at runtime
