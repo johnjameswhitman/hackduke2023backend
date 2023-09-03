@@ -1,0 +1,7 @@
+django~=4.2
+django-cors-headers~=4.2
+django-health-check~=3.17
+django-ninja~=0.22
+djangorestframework-simplejwt[crypto]~=5.3
+python-json-logger~=2.0
+requests~=2.31

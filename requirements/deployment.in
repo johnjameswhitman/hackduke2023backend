@@ -1,6 +1,0 @@
-django
-django-health-check
-django-ninja
-djangorestframework-simplejwt[crypto]
-python-json-logger
-requests
