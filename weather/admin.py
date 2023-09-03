@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from weather.models import WeatherAlertConfig
+
+
+class WeatherAlertConfigAdmin(admin.ModelAdmin):
+    pass
+
+
+admin.site.register(WeatherAlertConfig, WeatherAlertConfigAdmin)
