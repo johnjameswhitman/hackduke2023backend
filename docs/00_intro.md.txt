@@ -22,8 +22,7 @@ Note:
 
 ## Why are we here?
 
-- Learn what an API is
-- Write an API with Python
+We're going to build an API with Python
 
 Note:
 
@@ -46,9 +45,9 @@ Note:
 
 ## Lab: Install Prerequisites
 
-Make sure you have the following available on your machine:
+[bit.ly/hd23be](https://bit.ly/hd23be) > Lab > 00 Prerequisites
 
-1. Time: 5m
+1. Time: 10m
 2. Install Git and Python
 3. Pull and run the source code
 4. Play with Git (time-permitting)

@@ -10,8 +10,43 @@
 
 - Machine-to-machine interaction
 - Structured requests and responses
-- Usually either noun-oriented (REST) or verb-oriented (RPC)
-  - REST is also about discoverability (see HATEOAS)
+- Oversimplification:
+  - noun-oriented ([CRUD][crud] and [REST][rest]), or
+  - verb-oriented ([RPC][rpc])
+- REST is also about discoverability (see [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS))
+
+
+[crud]: https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
+[rest]: https://en.wikipedia.org/wiki/Representational_state_transfer
+[rpc]: https://en.wikipedia.org/wiki/Remote_procedure_call
+
+----
+
+### Noun-oriented API
+
+Update status of a _todo_.
+
+```
+PUT api/todos/{todo_id}
+{
+  "status": "complete"
+}
+```
+
+Note:
+
+- Technically you're supposed to use `PATCH` here instead of `PUT`, but it's 
+  rare in the real world.
+
+----
+
+### Verb-oriented API
+
+Tell the system to _complete_ a _todo_.
+
+```
+POST api/todos/{todo}/complete
+```
 
 ---
 
@@ -119,3 +154,77 @@ Note:
 - Status Codes
 - Headers
 - Body
+
+----
+
+### HTTP Response
+
+Status Codes <span style="opacity:0.1;">: Headers : Body</span>
+
+TODO: screenshot
+
+----
+
+### HTTP Response
+
+<span style="opacity:0.1;">Status Codes :</span> Headers <span style="opacity:0.1;">: Body</span>
+
+TODO: screenshot
+
+----
+
+### HTTP Response
+
+<span style="opacity:0.1;">Status Codes : Headers :</span> Body
+
+TODO: screenshot
+
+---
+
+## Security
+
+- HTTPS and TLS
+- Cross-origin security
+- AutheNtication and AuthoriZation
+
+Note:
+
+- AuthN establishes _who_ you are
+- AuthZ establishes _what_ you can do
+
+----
+
+### [TLS][tls] enables [HTTPS][https]
+
+- Encrypts HTTP request and response 
+- Handshake: asymmetric encryption (public certificate, private key, RSA)
+- Content exchange: Symmetric encryption (shared key, AES)
+
+Note:
+
+- With asymmetric encryption server advertises a public certificate that enables
+  clients to encrypt a message that _only_ its private key can decrypt.
+- With HTTPS, browser fetches a domain's public certificate, and negotiates a
+  shared _symmetric key_ that can both encrypt and decrypt messages (symmetric
+  keys are more efficient than asymmetric).
+- Once a connection is established the browser will send the encrypted request
+  path, query, fragment, headers and body, and the server will encrypt the 
+  response data.
+
+[https]: https://en.wikipedia.org/wiki/HTTPS
+[tls]: https://en.wikipedia.org/wiki/Transport_Layer_Security
+
+----
+
+### Cross-Origin Security
+
+- Why? Prevent badguys.com from moving money at yourbank.com
+- How? Configure [cross-origin resource sharing][cors]
+- [Origin][rfc6454_origin]: `scheme://domain:port`
+
+[cors]: https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
+[rfc6454_origin]: https://datatracker.ietf.org/doc/html/rfc6454#section-3.2
+
+Note:
+
+- [Julia Evans comic](https://drawings.jvns.ca/cors/)
