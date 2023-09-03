@@ -14,11 +14,11 @@ If you get stuck, ask for help!
 
 There's a good chance you already have Git installed. See with:
 
-=== "macOS"
+=== "macOS / Linux"
 
     ```shell
     # In Terminal.app
-    git --version  # if missing will prompt you to install command line developer tools.
+    git --version  # macOS may prompt you to install command line developer tools.
     ```
 
 === "Windows"
@@ -44,7 +44,7 @@ commands to install Git.
 You're going to need at least Python 3.8 for this lab. Run the following and
 confirm whether you have that version installed:
 
-=== "macOS"
+=== "macOS / Linux"
 
     ```shell
     # In Terminal.app
@@ -76,24 +76,105 @@ the instructions for your operating system below:
 
 ## Set up lab environment
 
+### Clone repo and install dependencies
+
 Tie the above together to get our lab environment ready.
 
+=== "macOS / Linux"
+
+    ```shell
+    # clone the repo and enter it
+    git clone https://github.com/johnjameswhitman/hackduke2023backend.git
+    cd hackduke2023backend
+
+    # set up virtual environment to isolate dependencies
+    python -m venv venv
+    source venv/bin/activate
+    python -m pip install -r requirements/development.txt
+
+    # run tests
+    pytest weather/tests  # should all pass
+    ```
+
+=== "Windows"
+
+    ```powershell
+    # clone the repo and enter it
+    git clone https://github.com/johnjameswhitman/hackduke2023backend.git
+    cd hackduke2023backend
+
+    # set up virtual environment to isolate dependencies
+    python -m venv venv
+    venv\Scripts\Activate.ps1
+    python -m pip install -r requirements\devevelopment.txt
+
+    # run tests
+    pytest weather\tests  # should all pass
+    ```
+
+At this point tests should all be passing. If you see a warning about _The 
+DEFAULT_FILE_STORAGE setting is deprecated_ it's ok to ignore.
+
+### Fire up API
+
+Now that you've gotten all of your dependencies set up, let's actually see 
+the API in action.
+
 ```shell
-# macOS and Linux
-# clone the repo and enter it
-git clone TODO: path to repo
-cd hackduke2023backend
-git checkout lab/00-prerequisites
+# run migrations to set up the database
+python manage.py migrate
 
-# set up virtual environment to isolate dependencies
-python -m venv venv
-source venv/bin/activate
-python -m pip install -r requirements.dev.txt
-
-# test out the API
-pytest tests  # should all pass
-python manage.py runserver  # starts the API
+# start the API in development mode
+python manage.py runserver
 ```
 
-At this point your tests should all be passing, and you should see `ok` when you
-load the API at: [http://127.0.0.1:3000/status](http://127.0.0.1:3000/status)
+You should see all :white_check_mark: when you load the API at:
+[http://127.0.0.1:8000/status/](http://127.0.0.1:8000/status/).
+
+![API Status](00_prerequisites/api_status.png "API status")
+
+!!! warning
+
+    If you see :x: next to the _DatabaseBackend_ or _MigrationsHealthCheck_, 
+    then this probably means you forgot to run migrations above before 
+    starting the server (`python manage.py migrate`).
+
+You can exit the server from your shell by pressing `CTRL+C`.
+
+### Create local super-user
+
+Django comes with user-management and a permissions framework out of the box. 
+Let's create a local super-user for your API, and make sure we can log into 
+the admin panel.
+
+```shell
+# Create a super-user and set a password.
+python manage.py createsuperuser --email admin@example.com --username admin
+```
+
+!!! note
+
+    Since this is your development environment it's ok to use a basic password
+    you won't forget; however, if you do forget it you can reset it with the 
+    command `python manage.py changepassword admin`. 
+
+### Log into Django admin
+
+Django also comes with an admin panel out of the box. Let's try it out.
+
+```shell
+# Start the server again
+python manage.py runserver
+```
+
+Now, open the admin page in your browser:
+[http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/).
+
+![Admin login](00_prerequisites/admin_login.png "admin login")
+
+Enter the credentials for your super-user and log in. You should see the admin
+home screen with links to _Groups_ and _Users_, as well as the _Weather 
+alert configs_ we'll be working with later in the workshop. You can use _admin_
+to create new users, manage permissions, and work with models.
+
+![Admin home](00_prerequisites/admin_home.png "admin home")
