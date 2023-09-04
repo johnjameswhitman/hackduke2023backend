@@ -33,6 +33,24 @@ Note:
 
 ---
 
+## Alternative Frameworks
+
+- Django + Django Rest Framework
+- FastAPI + SQLAlchemy
+- Flask + SQLAlchemy
+- Litestar
+
+Note:
+
+- Django Rest Framework (DRF) is very popular but can get complex. It would 
+  be good for a longer-running project.
+- Flask and FastAPI are micro-frameworks, so you have to make a lot more 
+  decisions yourself (not great for hackathon)
+- FastAPI gets a lot of attention, but Flask is tried-and-true
+- Litestar seems to have a lot of promise
+
+---
+
 ## Scaling
 
 - Contributors
@@ -53,9 +71,11 @@ Note:
 
 ## Observability
 
-- Metrics - long-lived, low fidelity, for dashboards
-- Logs - medium-lived, interesting events in code
-- Traces - short-lived, high fidelity, for realtime debugging
+| Pillar     | Description                                        |
+|------------|----------------------------------------------------|
+| **Metrics** | long-lived, low fidelity, for dashboards           |
+| **Logs**   | medium-lived, interesting events in code           |
+| **Traces** | short-lived, high fidelity, for realtime debugging |
 
 Note:
 

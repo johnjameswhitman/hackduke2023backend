@@ -37,8 +37,8 @@ class WeatherAlert(Schema):
     id: str
     status: WeatherAlertStatus
     severity: WeatherAlertSeverity
-    headline: str
-    description: str
+    headline: Optional[str]
+    description: Optional[str]
     instruction: Optional[str]
 
 
@@ -79,6 +79,7 @@ class NationalWeatherService:
 
         weather_alerts = []
         for alert_data in alerts.get("features", []):
+            logger.info("Alert data.", extra=alert_data)
             properties = alert_data["properties"]
             weather_alerts.append(
                 WeatherAlert(

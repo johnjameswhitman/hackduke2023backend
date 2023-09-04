@@ -14,7 +14,7 @@ Note:
 
 ### Demo of API
 
-TODO: screenshot of API docs
+![API docs](02_api_deep_dive/api_docs_home.png "api docs")
 
 Note:
 
@@ -104,7 +104,7 @@ WHERE username = 'admin';
 - Represent database records as Python classes
 - Django sets up tables for us using _migrations_
 
-```python[1|3|4]
+```python
 class WeatherAlertConfig(models.Model):
     """Configuration for an alert."""
     state_abbreviation = models.CharField(max_length=2)
@@ -117,7 +117,13 @@ class WeatherAlertConfig(models.Model):
 
 Django uses `querysets` to generate SQL. 
 
-TODO: code sample
+```python
+@router.get("/alerts", response=list[WeatherAlertResponse])
+def list_weather_alerts(request) -> list[WeatherAlertConfig]:
+    return WeatherAlertConfig.objects.filter(
+      user=request.auth
+    )
+```
 
 ---
 
@@ -126,7 +132,7 @@ TODO: code sample
 [bit.ly/hd23be](https://bit.ly/hd23be) > Lab > [03 Data Modeling](../lab/03_data_modeling/)
 
 1. Time: 5m
-2. TODO: set up lab (add severity)
+2. Modify the `WeatherAlertConfig` to include severity
 
 <div class="mermaid">
   <pre>
@@ -149,39 +155,49 @@ TODO: code sample
 
 ## API Endpoints
 
-- URL
-- HTTP Method
-- _Deserialize_ request
-- _Serialize_ response
+- CRUD
+- (De)serialization
 - Auth
 
 ----
 
-### CRUD
+### [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete)
 
-TODO: CRUD/HTTP method mapping
+![CRUD HTTP methods](02_api_deep_dive/crud_http_methods.png "CRUD HTTP methods")
+
+
+Note:
+
+- Aligns well with a _noun-oriented_ API
+- Same goes for SQL: `INSERT`, `SELECT`, `UPDATE`, `DELETE`.
 
 ----
 
 ### Serialization / Deserialization
 
-TODO: Django Ninja Schema code sample
+```python
+class WeatherAlertRequest(Schema):
+    state_abbreviation: str
+```
+
+&darr;
+
+```json
+{
+  "state_abbreviation": "NC"
+}
+```
 
 ----
 
-### AutheNtication
+### Auth
 
-TODO: Code sample of Django JWT
-
-Note:
-
-- API authenticates with JSON Web Tokens
-- JWTs prove who sender is (AuthN)
-- JWTs do not necessarily provide authorization (but can carry role info)
+- **JWT**: hashed and signed blob of JSON proving identity (AuthN)
+- `Authorization: Bearer {jwt}` (header)
 
 ---
 
 ## API Endpoint Lab
 
 1. Time: 10m
-2. TODO: set up lab (wire severity into endpoints)
+2. Wire severity into API

@@ -7,18 +7,18 @@ View me at [**bit.ly/hd23be**](https://bit.ly/hd23be)
 
 <!-- 0. INTRO -->
 
-## Who am I?
-
-- Pratt '08 with a BSE in BME
-- Worked in consulting and engineering at Accenture, Google and now [Galileo Health](https://galileo.io)
-- Live in NYC with my wonderful wife
-
-Note:
-
-- Clock: 1m
-- Chat about talk with Dean Simmons on changing majors
-
-[//]: # (TODO: photo w/ my and PY)
+<section>
+    <h2>Who ami I?</h2>
+    <div class="ulist">
+        <img src="00_intro/py_and_me.webp" alt="PY and me" 
+width="50%" style="float: right">
+        <ul style="width: 40%;">
+            <li>Pratt '08 (BME)</li>
+            <li>Accenture, Google and now <a href="https://galilieo.io">Galileo Health</a></li>
+            <li>Live in NYC with my wonderful wife</li>
+        </ul>
+    </div>
+</section>
 
 ---
 
@@ -69,11 +69,10 @@ Note:
 1. Time: 10m
 2. Install Git and Python
 3. Pull and run the source code
-4. Play with Git (time-permitting)
+4. If time, also do Lab > [01 Git Basics](../lab/01_git_basics/)
 
 Note:
 
 - Clock: 13m
 - If you finish early, then help your neighbors!
 - Docker optional
-- TODO: jump to lab steps
