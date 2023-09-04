@@ -1,9 +1,9 @@
 # Backend Workshop
 ## HackDuke 2023
 
-Welcome to the backend workshop for HackDuke 2023! We're going to work on an 
-API that allows users to configure _weather alerts_, and calls the National 
-Weather Service's own API to fetch data.
+Welcome to the backend workshop for [HackDuke 2023](https://2023.hackduke.org/)!
+We're going to work on an API that allows users to configure _weather alerts_,
+and calls the National Weather Service's own API to fetch data.
 
 This workshop is structured as two companion documents:
 

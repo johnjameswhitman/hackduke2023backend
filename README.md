@@ -1,31 +1,40 @@
-# hackduke2023backend
+# Backend Workshop
+## HackDuke 2023
 
-Content for HackDuke 2023 Backend Workshop
+Welcome to the backend workshop for [HackDuke 2023](https://2023.hackduke.org/)!
+We're going to work on an API that allows users to configure _weather alerts_,
+and calls the National Weather Service's own API to fetch data.
 
+This workshop is structured as two companion documents:
 
-## TODO
+- [overview slides](slides/index.html)
+- [practical lab](lab/00_prerequisites/)
 
-- [ ] slides
-  - [ ] p0: intro / prerequisites
-  - [ ] p0: background on APIs
-    - [ ] p0: HTTP request
-    - [ ] p0: HTTP response
-    - [ ] p0: security
-  - [ ] p0: why python / django?
-  - [ ] p0: modeling data
-  - [ ] p0: writing endpoints
-  - [ ] p1: writing tests
-  - [ ] p0: recap
-  - [ ] p1: extra reading
-- [ ] code
-  - [ ] p0: scaffold starter project
-  - [ ] p1: split settings up
-  - [ ] p1: docker setup
-  - [ ] p2: server deployment
-- [ ] lab
-  - [ ] p0: prerequisites
-  - [ ] p1: git
-  - [ ] p0: tweak model
-  - [ ] p0: tweak endpoint
-  - [ ] p1: tests
-  - [ ] p1: docker deploy
+This site is available at: [**bit.ly/hd23be**](https://bit.ly/hd23be).
+
+# Project layout
+
+The API for this project is organized as follows:
+
+```
+├── auth  # app
+├── config  # Project setup
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── core  # shared functionality
+├── docs  # documentation site
+├── manage.py
+├── requirements
+│   ├── base.txt
+│   └── development.txt
+└── weather  # app
+    ├── admin.py
+    ├── apps.py
+    ├── migrations
+    ├── models.py
+    ├── services.py  # NWS api client
+    ├── tests
+    └── views.py
+```
