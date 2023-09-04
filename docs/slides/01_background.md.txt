@@ -256,7 +256,7 @@ Note:
 
 ## CORS Lab
 
-[bit.ly/hd23be](https://bit.ly/hd23be) > Lab > 02 CORS Demo
+[bit.ly/hd23be](https://bit.ly/hd23be) > Lab > [02 CORS Demo](../lab/02_cors_demo/)
 
 1. Time: 5m
 2. Run a local copy of the lab docs

@@ -123,7 +123,7 @@ TODO: code sample
 
 ## Data Modeling Lab
 
-[bit.ly/hd23be](https://bit.ly/hd23be) > Lab > 03 Data Modeling
+[bit.ly/hd23be](https://bit.ly/hd23be) > Lab > [03 Data Modeling](../lab/03_data_modeling/)
 
 1. Time: 5m
 2. TODO: set up lab (add severity)

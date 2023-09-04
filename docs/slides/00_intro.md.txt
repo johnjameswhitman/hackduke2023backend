@@ -64,7 +64,7 @@ Note:
 
 ## Lab: Install Prerequisites
 
-[bit.ly/hd23be](https://bit.ly/hd23be) > Lab > 00 Prerequisites
+[bit.ly/hd23be](https://bit.ly/hd23be) > Lab > [00 Prerequisites](../lab/00_prerequisites/)
 
 1. Time: 10m
 2. Install Git and Python
