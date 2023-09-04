@@ -3,15 +3,16 @@
 ## Intro
 
 The idea behind CORS is to guard your API against unauthorized requests from 
-third party sites. For example, banks want to prevent random websites from using
-the bank's API to steal customer funds by issuing a request with javascript
-while the customer is on the malicious website but logged into their bank from
-a different tab.
+third party sites. For example, imagine you're developing an API for a bank. You
+would want to prevent an evil website from embedding some javascript on 
+their site that calls the bank's API using the customer's session credentials 
+while they're logged into the bank from a different tab.
 
-All browsers respect a special `access-control-allow-origin` header that your
-API sends back in responses. This provides a list of _origins_ whose
-javascript the browser should allow to make requests to the API. Origins are
-defined as the combination of `protocol://domain:port`.
+To avoid this situation, all browsers respect a special 
+`access-control-allow-origin` header that your API sends back in responses. 
+This provides a list of _origins_ whose javascript the browser should allow 
+to make requests to the API. Origins are defined as the combination of 
+`protocol://domain:port`.
 
 ![CORS header](02_cors_demo/cors_header.png "cors header")
 
