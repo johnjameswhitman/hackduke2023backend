@@ -202,22 +202,31 @@ TODO: screenshot
 ### [TLS][tls] enables [HTTPS][https]
 
 - Encrypts HTTP request and response 
-- Handshake: asymmetric encryption (public certificate, private key, often RSA)
-- Content exchange: symmetric encryption (shared key, often AES)
+- Handshake: asymmetric encryption (public certificate, private key, often 
+  [RSA][rsa])
+- Content exchange: symmetric encryption (shared key, often [AES][aes])
 
+[aes]: https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
 [https]: https://en.wikipedia.org/wiki/HTTPS
+[rsa]: https://en.wikipedia.org/wiki/RSA_(cryptosystem)
 [tls]: https://en.wikipedia.org/wiki/Transport_Layer_Security
 
 Note:
 
+- Note: We're not using HTTPS for local development. 
 - With asymmetric encryption server advertises a public certificate that enables
   clients to encrypt a message that _only_ its private key can decrypt.
+- A trusted _certificate authority_ cryptographically signs the server's
+  certificate so that you can trust that the certificate you have is the one the
+  server sent.
 - With HTTPS, browser fetches a domain's public certificate, and negotiates a
   shared _symmetric key_ that can both encrypt and decrypt messages (symmetric
-  keys are more efficient than asymmetric).
+  keys are more efficient than asymmetric). Think of it like have a 
+  combination lock where both sides know the combo code to get in.
 - Once a connection is established the browser will send the encrypted request
   path, query, fragment, headers and body, and the server will encrypt the 
   response data.
+- TODO: If time, analogy of USPS mailbox for asymmetric encryption
 
 ----
 

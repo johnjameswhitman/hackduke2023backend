@@ -18,6 +18,8 @@ Note:
 - Clock: 1m
 - Chat about talk with Dean Simmons on changing majors
 
+[//]: # (TODO: photo w/ my and PY)
+
 ---
 
 ## Why are we here?
@@ -36,11 +38,27 @@ Note:
 
 ### Here's what we're going to build
 
-TODO: diagram of API or screenshot
+<div class="mermaid">
+  <pre>
+    erDiagram
+      User {
+        int id PK
+        string username
+      }
+      WeatherAlertConfig {
+        int id PK
+        int user_id FK
+        string state_abbreviation
+        enum severity
+      }
+      User ||--o{ WeatherAlertConfig : "has many"
+  </pre>
+</div>
 
 Note:
 
 - Fire up browser and show off working API
+- http://127.0.0.1:8000/api/docs
 
 ---
 

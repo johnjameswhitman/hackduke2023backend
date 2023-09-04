@@ -9,12 +9,13 @@ while the customer is on the malicious website but logged into their bank from
 a different tab.
 
 All browsers respect a special `access-control-allow-origin` header that your
-API sends back in responses. This provides a list of allowed _origins_, which 
-are the combination of `protocol://domain:port`.
+API sends back in responses. This provides a list of _origins_ whose
+javascript the browser should allow to make requests to the API. Origins are
+defined as the combination of `protocol://domain:port`.
 
-![CORS header](02_security/cors_demo_header.png "cors header")
+![CORS header](02_cors_demo/cors_header.png "cors header")
 
-The API configures that header within
+The API configures the `access-control-allow-origin` header within
 [`config/settings.py`](https://github.com/johnjameswhitman/hackduke2023backend/blob/0f05f07e08af798ea1aea85a10734f5433dee29c/config/settings.py#L31-L33)
 as follows:
 
@@ -50,13 +51,13 @@ Below is a form that'll transfer some "meal points" using a dummy endpoint in
 the API. Let's try it from two different _origins_. Open each of these links in
 different tabs and then click _Transfer_ below:
 
-- [`http://127.0.0.1:8001/lab/02_security/`](http://127.0.0.1:8001/lab/02_security/#demo)
-- [`http://localhost:8001/lab/02_security/`](http://localhost:8001/lab/02_security/#demo)
+- [`http://127.0.0.1:8001/lab/02_cors_demo/`](http://127.0.0.1:8001/lab/02_cors_demo/#demo)
+- [`http://badguys.localhost:8001/lab/02_cors_demo/`](http://badguys.localhost:8001/lab/02_cors_demo/#demo)
 
 !!! Note
 
-    `127.0.0.1` and `localhost` are both addresses that point back to your 
-    local machine; however, because they're different domains each address 
+    `127.0.0.1` and `{anything}.localhost` are both addresses that point back to 
+    your local machine; however, because they're different domains each address 
     represents a different _origin_.
 
 ### Transfer "meal points"
@@ -70,12 +71,12 @@ different tabs and then click _Transfer_ below:
 If you submit the above for from an allowed origin, then you should get an 
 alert:
 
-![CORS accepted](02_security/cors_demo_accepted_alert.png "cors accepted")
+![CORS accepted](02_cors_demo/accepted_alert.png "cors accepted")
 
 But, if you submit it from a disallowed origin, then you'll get an error and 
 should see something like below in your browser console:
 
-![CORS rejected](02_security/cors_demo_rejected_console.png "cors rejected")
+![CORS rejected](02_cors_demo/rejected_console.png "cors rejected")
 
 <script>
   (() => {
