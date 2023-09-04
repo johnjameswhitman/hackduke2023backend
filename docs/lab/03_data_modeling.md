@@ -14,8 +14,9 @@ When building an API it's important to get your data model right early on.
 Unwinding mistakes down the road is difficult. Because it's hard to theorize 
 an entire problem space, start small and iterate as you learn more.
 
-For our API we have a simple data model that lets _users configure weather 
-alerts_.
+_Entity_ is a fancy synonym for _noun_ or _object_. We use them to model the 
+realtionships between things. For our API we have a simple data model that 
+lets _users_ configure _weather alerts_.
 
 ```mermaid
 erDiagram
@@ -40,13 +41,20 @@ A couple of notes on the diagram:
   owning `User`. This forms a many-to-one relationship.
 
 Our job today will be to add the new `severity` field to the
-`WeatherAlertConfig`. 
+`WeatherAlertConfig`.
 
 ## Mapping database records to Python objects
 
 Django comes with an Object Relational Mapper ([docs][orm_docs]). It allows 
 us to _model_ database tables as Python objects, and then automatically generate
 the necessary changes in the database to store data.
+
+!!! Aside
+
+    It's hard to talk about data modeling without talking about SQL. Knowing SQL
+    will make you a better backend developer. Unfortunately we don't have time
+    to cover it today. In your free time check out a tutorial like 
+    [sqltutorial.org](https://www.sqltutorial.org/).
 
 Let's look at the model for our `WeatherAlertConfig` entity, which lives in 
 [`weather/models.py`][weather_models].
@@ -101,7 +109,7 @@ Let's wire this new `severity` field into the model.
 1. Open [`weather/models.py`][weather_models].
 2. Add a new class above `WeatherAlertConfig` with the following:
     ```python
-    class Severity(models.IntegerChoices):
+    class Severity(models.TextChoices):
         EXTREME = "Extreme"
         SEVERE = "Severe"
         MODERATE = "Moderate"
@@ -158,7 +166,7 @@ generate a migration that closes any gaps between the two. To do this we'll use
 management commands with Django.
 
 ```shell
-python manage.py makemigrations  # sees gap between weather/models.py and tables
+python manage.py makemigrations  # diffs weather/models.py and tables
 python manage.py migrate  # applies changes
 ```
 
@@ -168,17 +176,21 @@ Now that we've modeled our changes and applied them to the database, let's
 see what it looks like:
 
 1. Fire up your local development server: `python manage.py runserver`
-2. Navigate to Django Admin: [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
-3. Log in with your superuser (admin) if necessary
+2. Navigate to Django Admin and log in with your superuser (admin) if necessary:
+   [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
 
     ![Admin home](03_data_modeling/admin_home.png "admin home")
 
-4. Click on [_Weather alert configs_](http://127.0.0.1:8000/admin/weather/weatheralertconfig/)
-5. Click on _ADD WEATHER ALERT CONFIG_
+3. Click on [_Weather alert configs_](http://127.0.0.1:8000/admin/weather/weatheralertconfig/)
+   and then _ADD WEATHER ALERT CONFIG_ (top right)
 
     ![Weather alert config](03_data_modeling/admin_weather_alert_config.png)
 
-6. Populate and save the alert
+4. Populate and save the alert (note that it automagically includes a dropdown 
+   for `severity`)
 
-    ![Weather alert config](03_data_modeling/admin_weather_alert_config_add.png)
+    ![Add weather alert config](03_data_modeling/admin_weather_alert_config_add.png)
 
+5. The new alert appears in the list
+
+    ![Weather alert config list](03_data_modeling/admin_weather_alert_config_list.png)
