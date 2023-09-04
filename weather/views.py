@@ -5,7 +5,7 @@ from django.http import HttpRequest
 from django.shortcuts import get_object_or_404
 from ninja import ModelSchema, Router, Schema
 
-from .models import WeatherAlertConfig
+from .models import WeatherAlertConfig, Severity
 from .services import NationalWeatherService, WeatherAlert
 
 logger = logging.getLogger(__name__)
@@ -15,6 +15,7 @@ router = Router()
 # Weather Alerts
 class WeatherAlertRequest(Schema):
     state_abbreviation: str
+    severity: Severity
 
 
 class WeatherAlertResponse(ModelSchema):
