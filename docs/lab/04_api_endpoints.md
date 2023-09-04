@@ -6,7 +6,6 @@ Today we're going to learn how to:
 
 - Interact with our API
 - Authenticate requests
-- Retrieve data from the database
 - Modify endpoints
 
 This lab will also give you a quick overview of the _Django Ninja_ plugin 

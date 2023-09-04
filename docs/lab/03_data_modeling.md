@@ -194,3 +194,26 @@ see what it looks like:
 5. The new alert appears in the list
 
     ![Weather alert config list](03_data_modeling/admin_weather_alert_config_list.png)
+
+## Querysets
+
+In Django, `querysets` are objects that build up a query to the database. 
+This lets you do things like construct a set of filters using inputs from 
+different places.
+
+To see them in action, check out weather-alerts list endpoint in
+[`weather/views.py`][weather_views], specifically the last line of this function:
+
+```python
+@router.get("/alerts", response=list[WeatherAlertResponse])
+def list_weather_alerts(request) -> list[WeatherAlertConfig]:
+    return WeatherAlertConfig.objects.filter(user=request.auth)
+```
+
+`WeatherAlertConfig.objects` returns a `queryset`. That itself has a `.filter()`
+method we use to restrict the list of alerts to the current user. You can 
+chain these together and pass them around. This is simple example; see the 
+[official Django querying docs][django_docs_querying] for more complex ones.
+
+[django_docs_querying]: https://docs.djangoproject.com/en/4.2/topics/db/queries/#retrieving-specific-objects-with-filters
+[weather_views]: https://github.com/johnjameswhitman/hackduke2023backend/blob/234d647babba5e3dadbbb90edb6b4ba7046d5b3c/weather/views.py#L38-L40
