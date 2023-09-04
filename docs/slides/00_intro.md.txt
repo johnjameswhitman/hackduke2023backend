@@ -58,7 +58,7 @@ Note:
 Note:
 
 - Fire up browser and show off working API
-- http://127.0.0.1:8000/api/docs
+- [http://127.0.0.1:8000/api/docs](http://127.0.0.1:8000/api/docs)
 
 ---
 
