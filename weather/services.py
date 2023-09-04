@@ -49,13 +49,13 @@ class NationalWeatherService:
     """
 
     ALERTS_URL: str = "https://api.weather.gov/alerts"
-    ALERTS_CACHE_KEY_TEMPLATE: str = f"{__name__}.alerts.{{area}}.{{limit}}"
+    ALERTS_CACHE_KEY_TEMPLATE: str = f"{__name__}.alerts.{{area}}.{{severity}}.{{limit}}"
 
-    def _get_alerts(self, area: str, limit: int) -> dict:
+    def _get_alerts(self, area: str, severity: str, limit: int) -> dict:
         """Fetches alerts from the NWS API."""
         res = requests.get(
             self.ALERTS_URL,
-            params={"area": area, "limit": limit},
+            params={"area": area, "severity": severity, "limit": limit},
         )
         res.raise_for_status()  # Raises error if API returned HTTP 4XX or 5XX status.
         return res.json()
@@ -66,14 +66,19 @@ class NationalWeatherService:
         """Fetches alerts for a given WeatherAlertConfig."""
         alerts = cache.get_or_set(
             self.ALERTS_CACHE_KEY_TEMPLATE.format(
-                area=config.state_abbreviation, limit=limit
+                area=config.state_abbreviation,
+                severity=config.severity,  # Update here
+                limit=limit,
             ),
             # default can be a value or a zero-argument callable. "partial" takes a callable
             # (self._get_alerts) and its arguments (anything, but "area" and "limit" in this case),
             # and returns a new callable. This defers execution of self._get_alerts with the
             # given arguments until partial's return-value itself is called.
             default=partial(
-                self._get_alerts, area=config.state_abbreviation, limit=limit
+                self._get_alerts,
+                area=config.state_abbreviation,
+                severity=config.severity,  # And here
+                limit=limit,
             ),
         )
 
