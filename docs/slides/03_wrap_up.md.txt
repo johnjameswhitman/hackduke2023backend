@@ -25,6 +25,14 @@ Note:
 
 ---
 
+## Technology Decisions
+
+- Bias towards results (i.e. action)
+- Speed up feedback loops (e.g. small commits, tests, feature-flagging)
+- Deliberate things that are hard to undo later (e.g. data model)
+
+---
+
 ## Scaling
 
 - Contributors
