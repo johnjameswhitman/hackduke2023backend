@@ -88,7 +88,7 @@ Tie the above together to get our lab environment ready.
     cd hackduke2023backend
 
     # set up virtual environment to isolate dependencies
-    python -m venv venv
+    python3 -m venv venv
     source venv/bin/activate
     python -m pip install -r requirements/development.txt
 

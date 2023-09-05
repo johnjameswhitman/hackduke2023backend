@@ -1,5 +1,5 @@
 # Backend Workshop
-## HackDuke 2023
+## [HackDuke 2023](https://github.com/johnjameswhitman/hackduke2023backend)
 
 Welcome to the backend workshop for [HackDuke 2023](https://2023.hackduke.org/)!
 We're going to work on an API that allows users to configure _weather alerts_,

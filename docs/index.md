@@ -12,6 +12,9 @@ This workshop is structured as two companion documents:
 
 This site is available at: [**bit.ly/hd23be**](https://bit.ly/hd23be).
 
+The code is available at:
+[**github.com/johnjameswhitman/hackduke2023backend**](https://github.com/johnjameswhitman/hackduke2023backend).
+
 # Project layout
 
 The API for this project is organized as follows:

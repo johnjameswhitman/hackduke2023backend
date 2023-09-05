@@ -83,7 +83,7 @@ Above we modified an existing file. _Git avoids tracking new files_ unless you
 explicitly ask it to. So, let's try adding a new file.
 
 ```shell
-echo "I am a new file." > new_file.txt
+cp README.md new_file.md
 
 # Observe that git is aware of the untracked file
 git status

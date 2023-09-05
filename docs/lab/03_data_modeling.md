@@ -106,6 +106,14 @@ an `enum` field, which means it can hold one of a set number of values:
 
 Let's wire this new `severity` field into the model.
 
+!!! tip "Activate `venv`"
+
+    Whenever you hop into a new command line shell, don't forget to reactivate
+    your Python virtual environment. From the root of the project run:
+
+    - macOS / Linux: `source venv/bin/activate`
+    - Windows: `venv\Scripts\Activate.ps1`
+
 1. Open [`weather/models.py`][weather_models].
 2. Add a new class above `WeatherAlertConfig` with the following:
     ```python
