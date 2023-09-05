@@ -8,7 +8,7 @@ View me at [**bit.ly/hd23be**](https://bit.ly/hd23be)
 <!-- 0. INTRO -->
 
 <section>
-    <h2>Who ami I?</h2>
+    <h2>Who am I?</h2>
     <div class="ulist">
         <img src="00_intro/py_and_me.webp" alt="PY and me" 
 width="50%" style="float: right">
