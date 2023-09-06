@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  django:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: hackduke_django
+    container_name: hackduke_django
+    volumes:
+      - .:/app:z
+    ports:
+      - '8000:8000'
+    command: /start_dev_server.sh
+
+  docs:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: hackduke_docs
+    container_name: hackduke_docs
+    volumes:
+      - .:/app:z
+    ports:
+      - '8001:8001'
+    command: /start_docs_server.sh
