@@ -52,7 +52,7 @@ class NationalWeatherService:
     ALERTS_CACHE_KEY_TEMPLATE: str = f"{__name__}.alerts.{{area}}.{{limit}}"
 
     def _get_alerts(self, area: str, limit: int) -> dict:
-        """Fetches alerts from the NWS API."""
+        """Fetches alerts from the National Weather Service API."""
         res = requests.get(
             self.ALERTS_URL,
             params={"area": area, "limit": limit},

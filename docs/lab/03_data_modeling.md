@@ -87,7 +87,7 @@ This model maps onto the entity diagram above. A couple of things to note:
 Right now, our users can tell the API which states they're interested in
 getting weather alerts for, but the National Weather Service API that we rely 
 upon offers a few more things we can use to filter alerts. To see what's 
-available go to the [_NWS API docs_][nws_alerts_docs] > Specification > 
+available go to the [_National Weather Service API docs_][nws_alerts_docs] > Specification > 
 expand `GET /alerts`.
 
 [nws_alerts_docs]: https://www.weather.gov/documentation/services-web-api#/default/alerts_query

@@ -28,7 +28,7 @@ class WeatherAlertDetailResponse(WeatherAlertResponse):
 
     @classmethod
     def from_model(cls, model: WeatherAlertConfig) -> "WeatherAlertDetailResponse":
-        """Populates instance with model and response from NWS API."""
+        """Populates instance with model and response from National Weather Service API."""
         national_weather_service = NationalWeatherService()
         alerts = national_weather_service.get_alerts(model)
         kwargs = {**model.__dict__, "alerts": alerts}  # Merge model and alerts.

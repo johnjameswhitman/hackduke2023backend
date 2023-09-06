@@ -188,14 +188,14 @@ severity field when working with requests.
 `services` are not a Django concept, but are a good place to drop complex 
 business logic and interactions with third parties. For example, the API has a 
 `NationalWeatherService` class in [`weather/services.py`][weather_services] 
-that handles interactions with the NWS API. Let's get that working with the 
+that handles interactions with the National Weather Service API. Let's get that working with the 
 new `severity` field.
 
 1. First, update `_get_alerts` to include the severity:
 
     ```python
     def _get_alerts(self, area: str, severity: str, limit: int) -> dict:
-        """Fetches alerts from the NWS API."""
+        """Fetches alerts from the National Weather Service API."""
         res = requests.get(
             self.ALERTS_URL,
             params={"area": area, "severity": severity, "limit": limit},
@@ -205,13 +205,13 @@ new `severity` field.
     ```
 
 2. Next, update the [cache key][weather_services_cache_key] we use to ensure the
-   API caches repeated calls to the NWS API:
+   API caches repeated calls to the National Weather Service API:
 
     ```python
     ALERTS_CACHE_KEY_TEMPLATE: str = f"{__name__}.alerts.{{area}}.{{severity}}.{{limit}}"
     ```
 
-3. Finally, update the call to [fetch and cache][weather_services_fetch] the NWS 
+3. Finally, update the call to [fetch and cache][weather_services_fetch] the National Weather Service 
    data:
 
     ```python
@@ -290,7 +290,7 @@ class NationalWeatherService:
   ALERTS_CACHE_KEY_TEMPLATE: str = f"{__name__}.alerts.{{area}}.{{severity}}.{{limit}}"
 
   def _get_alerts(self, area: str, severity: str, limit: int) -> dict:
-      """Fetches alerts from the NWS API."""
+      """Fetches alerts from the National Weather Service API."""
       res = requests.get(
           self.ALERTS_URL,
           params={"area": area, "severity": severity, "limit": limit},
