@@ -1,7 +1,7 @@
 version: '3'
 
 services:
-  django:
+  hackduke_django:
     build:
       context: .
       dockerfile: ./Dockerfile
@@ -13,7 +13,7 @@ services:
       - '8000:8000'
     command: /start_dev_server.sh
 
-  docs:
+  hackduke_docs:
     build:
       context: .
       dockerfile: ./Dockerfile
