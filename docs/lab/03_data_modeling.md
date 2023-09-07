@@ -106,14 +106,6 @@ an `enum` field, which means it can hold one of a set number of values:
 
 Let's wire this new `severity` field into the model.
 
-!!! tip "Activate `venv`"
-
-    Whenever you hop into a new command line shell, don't forget to reactivate
-    your Python virtual environment. From the root of the project run:
-
-    - macOS / Linux: `source venv/bin/activate`
-    - Windows: `venv\Scripts\Activate.ps1`
-
 1. Open [`weather/models.py`][weather_models].
 2. Add a new class above `WeatherAlertConfig` with the following:
     ```python
@@ -169,13 +161,16 @@ class WeatherAlertConfig(models.Model):
 
 At this point we've made changes to our data model, but need to reflect those 
 changes into the database. This is where _migrations_ come into play. Django 
-will inspect your models and the current structure of the database, then 
-generate a migration that closes any gaps between the two. To do this we'll use
+will inspect your models and the set of migrations, and then generate a new 
+migration that closes any gaps between the two. To do this we'll use
 management commands with Django.
 
 ```shell
-python manage.py makemigrations  # diffs weather/models.py and tables
-python manage.py migrate  # applies changes
+# diff weather/models.py and tables
+docker-compose exec hackduke_django python manage.py makemigrations
+
+# apply changes
+docker-compose exec hackduke_django python manage.py migrate
 ```
 
 ## Django Admin
@@ -183,23 +178,22 @@ python manage.py migrate  # applies changes
 Now that we've modeled our changes and applied them to the database, let's 
 see what it looks like:
 
-1. Fire up your local development server: `python manage.py runserver`
-2. Navigate to Django Admin and log in with your superuser (admin) if necessary:
+1. Navigate to Django Admin and log in with your superuser (admin) if necessary:
    [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
 
     ![Admin home](03_data_modeling/admin_home.png "admin home")
 
-3. Click on [_Weather alert configs_](http://127.0.0.1:8000/admin/weather/weatheralertconfig/)
+2. Click on [_Weather alert configs_](http://127.0.0.1:8000/admin/weather/weatheralertconfig/)
    and then _ADD WEATHER ALERT CONFIG_ (top right)
 
     ![Weather alert config](03_data_modeling/admin_weather_alert_config.png)
 
-4. Populate and save the alert (note that it automagically includes a dropdown 
+3. Populate and save the alert (note that it automagically includes a dropdown 
    for `severity`)
 
     ![Add weather alert config](03_data_modeling/admin_weather_alert_config_add.png)
 
-5. The new alert appears in the list
+4. The new alert appears in the list
 
     ![Weather alert config list](03_data_modeling/admin_weather_alert_config_list.png)
 

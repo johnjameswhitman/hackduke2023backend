@@ -17,7 +17,7 @@ consult the [Django Ninja docs](https://django-ninja.rest-framework.com/).
 
 Django Ninja provides a documentation viewer out of the box that we can use 
 to see the _shapes_ of API requests and responses, and interact with 
-endpoints. Make sure you're running the API (`python manage.py runserver`), and 
+endpoints. Make sure you're running the API (`docker-compose up -d`), and 
 then navigate to the following URL to view the docs:
 [http://127.0.0.1:8000/api/docs](http://127.0.0.1:8000/api/docs).
 
@@ -153,14 +153,6 @@ Django Ninja handles the rest.
 
 Now it's your turn to update the API. Let's handle the new `severity` field 
 we added to `WeatherAlertConfig` in the last lab.
-
-!!! tip "Activate `venv`"
-
-    Whenever you hop into a new command line shell, don't forget to reactivate
-    your Python virtual environment. From the root of the project run:
-
-    - macOS / Linux: `source venv/bin/activate`
-    - Windows: `venv\Scripts\Activate.ps1`
 
 ### Wire `severity` into endpoints
 

@@ -40,20 +40,6 @@ from a development mkdocs server running from an origin of
 - Therefore, the API will <b id="corsDemoAccept">thinking...</b> your 
   request.
 
-!!! tip "Activate `venv`"
-
-    Whenever you hop into a new command line shell, don't forget to reactivate
-    your Python virtual environment. From the root of the project run:
-
-    - macOS / Linux: `source venv/bin/activate`
-    - Windows: `venv\Scripts\Activate.ps1`
-
-From the root of the repository run `mkdocs serve`, and it will start serving
-this documentation site from your local machine.
-
-If you don't already have the API running locally, open up another shell and run:
-`python manage.py runserver`.
-
 ## Demo
 
 Below is a form that'll transfer some "meal points" using a dummy endpoint in 

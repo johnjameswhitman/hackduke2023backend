@@ -36,6 +36,27 @@ Note:
 
 ----
 
+## Why do we care about APIs?
+
+![Demo API](https://docs.google.com/drawings/d/e/2PACX-1vQfgsId81YaOOfNydulqhbr5e-A1gZw8DHUJ12siG7jcpfO8UmZY_AseoiDnLHjfXUgsKfbt4g3h5RS/pub?w=1440&amp;h=1080)
+
+<!-- .element: class="r-stretch" -->
+
+Note:
+
+- APIs unlock a ton of automation
+- They let you expose your idea or business over the web
+- E.g. you may be interested in developing an ML or AI model...but how will 
+  your users actually interact with it? You need some kind of service that 
+  accepts their features and returns an inference.
+- Image credits...
+  - https://en.wikipedia.org/wiki/Drug_packaging#/media/File:Walgreens_Prescription_Bottle.jpg
+  - https://en.wikipedia.org/wiki/Test_tube#/media/File:Two_small_test_tubes_held_in_spring_clamps.jpg
+  - https://en.wikipedia.org/wiki/IPhone_14
+  - https://en.wikipedia.org/wiki/MacBook_Pro#/media/File:MacBook_Pro_Retina_001.jpg
+
+----
+
 ### Here's what we're going to build
 
 <div class="mermaid">
