@@ -47,7 +47,7 @@ Below is a form that'll transfer some "meal points" using a dummy endpoint in
 the API. Let's try it from two different _origins_. Open each of these links in
 different tabs and then click _Transfer_ below:
 
-- [`http://mealpointsapp.localhost:8001/lab/02_cors_demo/`](http://127.0.0.1:8001/lab/02_cors_demo/#demo)
+- [`http://mealpointsapp.localhost:8001/lab/02_cors_demo/`](http://mealpointsapp.localhost:8001/lab/02_cors_demo/#demo)
 - [`http://badguys.localhost:8001/lab/02_cors_demo/`](http://badguys.localhost:8001/lab/02_cors_demo/#demo)
 
 !!! Note
