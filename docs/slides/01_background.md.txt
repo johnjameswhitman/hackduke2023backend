@@ -215,13 +215,28 @@ Note:
 
 ----
 
-### [TLS][tls] enables [HTTPS][https]
+### [HTTPS][https]
 
-- Why encrypt? Guard sensitive details like passwords and account info.
-- How does it work?
-  - Browser sends a handshake using asymmetric encryption (public certificate, 
-    private key, often [RSA][rsa])
-  - Exchange content with symmetric encryption (shared key, often [AES][aes])
+<style>
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+</style>
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/SJJmoDZ3il8?si=b0WlKn-H17-pIHw-"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen>
+</iframe>
+
+<p class="text-sm">
+  Note! TLS replaced SSL, but they work similarly.
+</p>
 
 [aes]: https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
 [https]: https://en.wikipedia.org/wiki/HTTPS
@@ -230,49 +245,12 @@ Note:
 
 Note:
 
+- This video is old and since then TLS has replaced SSL, but works similarly at
+  a high level.
 - Note: We're not using HTTPS for local development.
 - Once a connection is established the browser will send the encrypted request
   path, query, fragment, headers and body, and the server will encrypt the 
   response data.
-
-----
-
-### Asymmetric Encryption
-
-![TLS asymmetric encryption](01_background/tls_asymmetric_encryption_usps_mailbox.jpg "TLS asymmetric encryption")
-
-<!-- .element: class="r-stretch" -->
-
-Credit: [Wikipedia](https://en.wikipedia.org/wiki/File:It_is_in_the_mail_(8080987511).jpg)
-
-Note:
-
-- Anybody can drop stuff in the box, but only USPS has the key to unlock it
-- You drop stuff in the box because you trust USPS
-- With asymmetric encryption server advertises a public certificate that enables
-  clients to encrypt a message that _only_ its private key can decrypt.
-- A trusted _certificate authority_ cryptographically signs the server's
-  certificate so that you can trust that the certificate you have is the one the
-  server sent.
-
-----
-
-### Symmetric Encryption
-
-![TLS symmetric encryption](01_background/tls_symmetric_encryption_combo_lock.jpg "TLS symmetric encryption")
-
-<!-- .element: class="r-stretch" -->
-
-Credit: [Wikipedia](https://commons.wikimedia.org/wiki/File:Masterpadlock.jpg)
-
-Note:
-
-- During handshake the browser negotiates a shared _symmetric key_ that can 
-  both encrypt and decrypt messages (symmetric keys are more efficient than
-  asymmetric).
-- Think of it like have a combination lock where both sides know the combo code
-  to get in.
-
 
 ----
 

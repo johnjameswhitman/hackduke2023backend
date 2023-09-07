@@ -6,7 +6,6 @@ code. Here's a checklist of what we're going to do:
 
 - Install Git
 - Install Docker
-- Install Python 3.8+
 - Set up lab environment
 
 If you get stuck, ask for help!

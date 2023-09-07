@@ -88,7 +88,7 @@ Note:
 [bit.ly/hd23be](https://bit.ly/hd23be) > Lab > [00 Prerequisites](../lab/00_prerequisites/)
 
 1. Time: 10m
-2. Install Git and Python
+2. Install Git and Docker
 3. Pull and run the source code
 4. If time, also do Lab > [01 Git Basics](../lab/01_git_basics/)
 

@@ -38,7 +38,7 @@ Note:
 
 ## Why Django?
 
-- Batteries included web framework
+- Batteries included Python web framework
 - Huge community
 
 Note:
