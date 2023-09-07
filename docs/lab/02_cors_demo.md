@@ -112,7 +112,7 @@ should see something like below in your browser console:
 
     function locationCorsApproved() {
       const allowedIP = /^http:\/\/127\.0\.0\.1:8001\//;
-      const allowedDomain = /^mealpointsapp\.localhost:8001\//;
+      const allowedDomain = /^http:\/\/mealpointsapp\.localhost:8001\//;
       document.getElementById("corsDemoLocation").innerText = `${window.location.protocol}//${window.location.host}`;
       if (allowedIP.test(window.location) || allowedDomain.test(window.location)) {
         document.getElementById("corsDemoAccept").innerText = "accept ✅";
