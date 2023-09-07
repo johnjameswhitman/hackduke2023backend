@@ -117,7 +117,7 @@ class WeatherAlertConfig(models.Model):
 
 Django uses `querysets` to generate SQL. 
 
-```python
+```python [3-5]
 @router.get("/alerts", response=list[WeatherAlertResponse])
 def list_weather_alerts(request) -> list[WeatherAlertConfig]:
     return WeatherAlertConfig.objects.filter(
@@ -192,7 +192,8 @@ class WeatherAlertRequest(Schema):
 
 ### Auth
 
-- **JWT**: hashed and signed blob of JSON proving identity (AuthN)
+- **JWT**: JSON Web Tokens are a hashed and signed blob of JSON proving identity 
+  (AuthN)
 - `Authorization: Bearer {jwt}` (header)
 
 ---

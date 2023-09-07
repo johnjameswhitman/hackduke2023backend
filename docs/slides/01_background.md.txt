@@ -13,7 +13,6 @@
 - Oversimplification:
   - noun-oriented ([CRUD][crud] and [REST][rest]), or
   - verb-oriented ([RPC][rpc])
-- REST is also about discoverability (see [HATEOAS](https://en.wikipedia.org/wiki/HATEOAS))
 
 
 [crud]: https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
@@ -22,14 +21,26 @@
 
 ----
 
+### Noun vs Verb Oriented API
+
+![IoT cat door](01_background/cat_door.jpg "IoT cat door")
+
+<!-- .element: class="r-stretch" -->
+
+Note:
+
+- Image credit: https://www.pxfuel.com/en/free-photo-qqbct
+
+----
+
 ### Noun-oriented API
 
-Update status of a _todo_.
+Update position of the _door_.
 
 ```
-PUT api/todos/{todo_id}
+PUT api/door/{door_id}
 {
-  "status": "complete"
+  "position": "open"
 }
 ```
 
@@ -42,10 +53,10 @@ Note:
 
 ### Verb-oriented API
 
-Tell the system to _complete_ a _todo_.
+Tell the system to _open_ the _door_.
 
 ```
-POST api/todos/{todo}/complete
+POST api/door/{door_id}/open
 ```
 
 Note:
@@ -206,10 +217,11 @@ Note:
 
 ### [TLS][tls] enables [HTTPS][https]
 
-- Encrypts HTTP request and response 
-- Handshake: asymmetric encryption (public certificate, private key, often 
-  [RSA][rsa])
-- Content exchange: symmetric encryption (shared key, often [AES][aes])
+- Why encrypt? Guard sensitive details like passwords and account info.
+- How does it work?
+  - Browser sends a handshake using asymmetric encryption (public certificate, 
+    private key, often [RSA][rsa])
+  - Exchange content with symmetric encryption (shared key, often [AES][aes])
 
 [aes]: https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
 [https]: https://en.wikipedia.org/wiki/HTTPS
@@ -227,7 +239,7 @@ Note:
 
 ### Asymmetric Encryption
 
-![TLS asymmetric encryption](01_background/tls_asymmetric_ecryption_usps_mailbox.jpg "TLS asymmetric encryption")
+![TLS asymmetric encryption](01_background/tls_asymmetric_encryption_usps_mailbox.jpg "TLS asymmetric encryption")
 
 <!-- .element: class="r-stretch" -->
 

@@ -20,9 +20,10 @@ The API configures the `access-control-allow-origin` header within
 [`config/settings.py`](https://github.com/johnjameswhitman/hackduke2023backend/blob/0f05f07e08af798ea1aea85a10734f5433dee29c/config/settings.py#L31-L33)
 as follows:
 
-```
+```python
 CORS_ALLOWED_ORIGINS = [
-    "http://127.0.0.1:8001",  # Local docs site
+    "http://127.0.0.1:8001",  # Docs site
+    "http://mealpointsapp.localhost:8001",  # CORS demo site
 ]
 ```
 
@@ -32,9 +33,9 @@ that to your project's settings.
 
 ## Setup
 
-Let's demo CORS with the local API. It will only work if you're viewing this page
+Let's demo CORS with the local API. It will work if you're viewing this page
 from a development mkdocs server running from an origin of
-`http://127.0.0.1:8001`...
+`http://mealpointsapp.localhost:8001`...
 
 - You're currently viewing this page from the origin: <pre id="corsDemoLocation">thinking...</pre>
 - Therefore, the API will <b id="corsDemoAccept">thinking...</b> your 
@@ -46,14 +47,14 @@ Below is a form that'll transfer some "meal points" using a dummy endpoint in
 the API. Let's try it from two different _origins_. Open each of these links in
 different tabs and then click _Transfer_ below:
 
-- [`http://127.0.0.1:8001/lab/02_cors_demo/`](http://127.0.0.1:8001/lab/02_cors_demo/#demo)
+- [`http://mealpointsapp.localhost:8001/lab/02_cors_demo/`](http://127.0.0.1:8001/lab/02_cors_demo/#demo)
 - [`http://badguys.localhost:8001/lab/02_cors_demo/`](http://badguys.localhost:8001/lab/02_cors_demo/#demo)
 
 !!! Note
 
-    `127.0.0.1` and `{anything}.localhost` are both addresses that point back to 
-    your local machine; however, because they're different domains each address 
-    represents a different _origin_.
+    `mealpointsapp.localhost` and `badguys.localhost` are both addresses that
+    point back to your local machine; however, because they're different 
+    domains each address represents a different _origin_.
 
 ### Transfer "meal points"
 
@@ -110,9 +111,10 @@ should see something like below in your browser console:
     }
 
     function locationCorsApproved() {
-      const allowedOrigin = /^http:\/\/127\.0\.0\.1:8001\//;
+      const allowedIP = /^http:\/\/127\.0\.0\.1:8001\//;
+      const allowedDomain = /^mealpointsapp\.localhost:8001\//;
       document.getElementById("corsDemoLocation").innerText = `${window.location.protocol}//${window.location.host}`;
-      if (allowedOrigin.test(window.location)) {
+      if (allowedIP.test(window.location) || allowedDomain.test(window.location)) {
         document.getElementById("corsDemoAccept").innerText = "accept ✅";
       } else {
         document.getElementById("corsDemoAccept").innerText = "reject ❌";
