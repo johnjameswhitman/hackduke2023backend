@@ -34,7 +34,7 @@ it:
 - macOS - If `git` was missing above, then macOS should have already prompted
   you to install _command line developer tools_.
 - [Windows](https://git-scm.com/download/win) - Install Git from the official
-  website.
+  website. Accept the defaults. Re-open powershell after installing.
 
 If you're running Linux, then I assume you know the right package management
 commands to install Git.
@@ -46,7 +46,9 @@ package and deploy applications. Our demo API runs on Docker, and so does a
 ton of software on the web. Let's get it installed.
 
 - [macOS](https://docs.docker.com/desktop/install/mac-install/)
-- [Windows](https://docs.docker.com/desktop/install/windows-install/)
+- [Windows](https://docs.docker.com/desktop/install/windows-install/) - It 
+  may prompt you to install WSL (_Windows Subsystem for Linux_), which is fine. 
+  Restart Docker Desktop after installing WSL.
 
 ## Set up lab environment
 
@@ -60,6 +62,8 @@ git clone https://github.com/johnjameswhitman/hackduke2023backend.git
 cd hackduke2023backend
 
 # start up docker services
+# Windows users may get a prompt asking to allow Docker to accept network 
+# connections.
 docker-compose up -d
 
 # confirm they're up - you should hackduke_django and hackduke_docs
