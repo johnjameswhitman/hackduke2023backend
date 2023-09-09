@@ -1,7 +1,11 @@
-# Backend Workshop
-## HackDuke 2023
+# HackDuke 2023
+## Backend Workshop
 
 View me at [**bit.ly/hd23be**](https://bit.ly/hd23be)
+
+![Workshop QR Code](00_intro/workshop_qrcode.png "workshop qr code")
+
+<!-- .element: class="r-stretch" -->
 
 ---
 

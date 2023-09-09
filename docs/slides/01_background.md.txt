@@ -75,7 +75,6 @@ Note:
 
 - Application protocol for loading documents over a network connection
 - Request &rarr; Response
-- Stateless
 
 Note:
 
@@ -98,6 +97,8 @@ Note:
 URL <span style="opacity:0.1;">: Method : Headers : Cookies : Body</span>
 
 _Uniform Resource Locators_ point to documents
+
+`https://youtu.be/x7X9w_GIm1s?t=18`
 
 ![structure of a URL](01_background/mdn_url_all.png "Structure of a URL")
 
@@ -269,9 +270,9 @@ Note:
 
 ### Cross-Origin Security
 
+- Why? Prevent badguys.com from moving money at yourbank.com
 - What is an [origin][rfc6454_origin]? `scheme://domain:port`
 - What is cross-origin? JS at origin A &rarr; API at origin B
-- Why? Prevent badguys.com from moving money at yourbank.com
 - How? Configure [cross-origin resource sharing][cors]
 
 [cors]: https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
