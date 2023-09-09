@@ -15,7 +15,7 @@ Unwinding mistakes down the road is difficult. Because it's hard to theorize
 an entire problem space, start small and iterate as you learn more.
 
 _Entity_ is a fancy synonym for _noun_ or _object_. We use them to model the 
-realtionships between things. For our API we have a simple data model that 
+relationships between things. For our API we have a simple data model that 
 lets _users_ configure _weather alerts_.
 
 ```mermaid
