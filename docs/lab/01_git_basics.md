@@ -120,6 +120,9 @@ offsets is inconvenient).
 ```shell
 git log  # find the "Adds new file." commit hash
 git revert --no-edit {hash from above}
+
+# Finally, go back to the main branch
+git checkout main
 ```
 
 ## Further reading
