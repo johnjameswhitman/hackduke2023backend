@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Slides (HackDuke 2023 Backend)</title>
+		<link
+		    rel="stylesheet"
+			href="../assets/reveal.js@4.3.1/dist/reset.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../assets/reveal.js@4.3.1/dist/reveal.css"
+		/>
+		<link
+			rel="stylesheet"
+			href="../assets/reveal.js@4.3.1/dist/theme/black.css"
+			id="theme"
+		/>
+		<link rel="icon" href="../assets/favicon.svg">
+
+		<!-- Theme used for syntax highlighted code -->
+		<!-- https://highlightjs.org/examples -->
+		<link rel="stylesheet" href="../assets/highlightjs/cdn-assets@11.8.0/styles/a11y-dark.min.css">
+	</head>
+	<body>
+		<div class="reveal">
+<!--			<header class="left" style="position: absolute; left: 20px;"><img src="../assets/hd-symbol.svg"/></header>-->
+			<div class="slides">
+				<section data-markdown="00_intro.md.txt"
+						 data-separator="^^\r?\n---\r?\n$"
+						 data-separator-vertical="^\r?\n----\r?\n$"
+						 data-separator-notes="^Note:"
+						 data-charset="iso-8859-15"
+						 data-transition="slide">
+				</section>
+				<section data-markdown="01_background.md.txt"
+						 data-separator="^^\r?\n---\r?\n$"
+						 data-separator-vertical="^\r?\n----\r?\n$"
+						 data-separator-notes="^Note:"
+						 data-charset="iso-8859-15"
+						 data-transition="slide">
+				</section>
+				<section data-markdown="02_api_deep_dive.md.txt"
+						 data-separator="^^\r?\n---\r?\n$"
+						 data-separator-vertical="^\r?\n----\r?\n$"
+						 data-separator-notes="^Note:"
+						 data-charset="iso-8859-15"
+						 data-transition="slide">
+				</section>
+				<section data-markdown="03_wrap_up.md.txt"
+						 data-separator="^^\r?\n---\r?\n$"
+						 data-separator-vertical="^\r?\n----\r?\n$"
+						 data-separator-notes="^Note:"
+						 data-charset="iso-8859-15"
+						 data-transition="slide">
+				</section>
+			</div>
+		</div>
+
+		<script src="../assets/reveal.js@4.3.1/dist/reveal.js"></script>
+		<script src="../assets/reveal.js@4.3.1/plugin/notes/notes.js"></script>
+		<script src="../assets/reveal.js@4.3.1/plugin/markdown/markdown.js"></script>
+		<script src="../assets/reveal.js@4.3.1/plugin/highlight/highlight.js"></script>
+		<script src="../assets/reveal.js-mermaid-plugin@2.0.0/plugin/mermaid/mermaid.js"></script>
+		<script>
+			// More info about initialization, config and plugins:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			// - https://revealjs.com/plugins/
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				center: true,
+				hash: true,
+				slideNumber: true,
+
+				// mermaid initialize config
+				mermaid: {
+				// flowchart: {
+				//	 curve: 'linear',
+				// },
+				},
+
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealMermaid ]
+			});
+		</script>
+	</body>
+</html>

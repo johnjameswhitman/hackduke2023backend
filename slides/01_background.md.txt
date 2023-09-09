@@ -1,0 +1,294 @@
+## Background on APIs
+
+- What is an API?
+- What is HTTP?
+- How do you secure an API?
+
+---
+
+### What is an API?
+
+- Machine-to-machine interaction
+- Structured requests and responses
+- Oversimplification:
+  - noun-oriented ([CRUD][crud] and [REST][rest]), or
+  - verb-oriented ([RPC][rpc])
+
+
+[crud]: https://en.wikipedia.org/wiki/Create,_read,_update_and_delete
+[rest]: https://en.wikipedia.org/wiki/Representational_state_transfer
+[rpc]: https://en.wikipedia.org/wiki/Remote_procedure_call
+
+----
+
+### Noun vs Verb Oriented API
+
+![IoT cat door](01_background/cat_door.jpg "IoT cat door")
+
+<!-- .element: class="r-stretch" -->
+
+Note:
+
+- Image credit: https://www.pxfuel.com/en/free-photo-qqbct
+
+----
+
+### Noun-oriented API
+
+Update position of the _door_.
+
+```
+PUT api/door/{door_id}
+{
+  "position": "open"
+}
+```
+
+Note:
+
+- Technically you're supposed to use `PATCH` here instead of `PUT`, but it's 
+  rare in the real world.
+
+----
+
+### Verb-oriented API
+
+Tell the system to _open_ the _door_.
+
+```
+POST api/door/{door_id}/open
+```
+
+Note:
+
+- Why use verb-oriented over noun-oriented? 
+- Usually you can find a way to represent things one way or the other, but it 
+  can be clunky to think of everything in terms of nouns.
+- Pretend you had an IoT cat door that lets your cat outside. Does it make more 
+  sense to have an endpoint that:
+  - updates door "resource" to have a status of "open"
+  - simply "opens the door"
+
+---
+
+### What is HTTP?
+
+- Application protocol for loading documents over a network connection
+- Request &rarr; Response
+
+Note:
+
+- We're going to come back to URLs when we discuss security
+
+---
+
+### HTTP Request
+
+- URL
+- Method
+- Headers
+- Cookies
+- Body
+
+----
+
+### HTTP Request
+
+URL <span style="opacity:0.1;">: Method : Headers : Cookies : Body</span>
+
+_Uniform Resource Locators_ point to documents
+
+`https://youtu.be/x7X9w_GIm1s?t=18`
+
+![structure of a URL](01_background/mdn_url_all.png "Structure of a URL")
+
+Credit: [MDN](https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_URL)
+
+----
+
+### HTTP Request
+
+<span style="opacity:0.1;">URL :</span> Method <span style="opacity:0.1;">: Headers : Cookies : Body</span>
+
+![HTTP request methods](01_background/wikipedia_http_methods.png "HTTP request methods")
+
+Credit: [Wikipedia](https://en.wikipedia.org/wiki/HTTP#Request_methods)
+
+----
+
+### HTTP Request
+
+<span style="opacity:0.1;">URL : Method :</span> Headers <span style="opacity:0.1;">: Cookies : Body</span>
+
+![HTTP request headers](01_background/request_headers.png "HTTP request headers")
+
+Note:
+
+- Headers are key-value pairs
+- Important ones are `Content-Type` and `Accept`
+- Demo google.com in Chrome dev tools
+
+----
+
+### HTTP Request
+
+<span style="opacity:0.1;">URL : Method : Headers :</span> Cookies <span style="opacity:0.1;">: Body</span>
+
+![HTTP request cookies](01_background/request_cookies.png "HTTP request cookies")
+
+Note:
+
+- Cookies are also key-value pairs!
+- Cookies are actually sent in the headers
+- Shared across a domain, often used for session and auth (and advertising 
+  tracking IDs)
+
+----
+
+### HTTP Request
+
+<span style="opacity:0.1;">URL : Method : Headers : Cookies :</span> Body
+
+![HTTP request body](01_background/request_body.png "HTTP request body")
+
+Note:
+
+- Form body lets you pass files (which you cannot do with JSON body)
+- You cannot nest forms, so one trick is to pass JSON in a form-field
+
+---
+
+### HTTP Response
+
+- Status Codes
+- Headers
+- Body
+
+----
+
+### HTTP Response
+
+Status Codes <span style="opacity:0.1;">: Headers : Body</span>
+
+![HTTP response status](01_background/response_status.png "HTTP response status")
+
+----
+
+### HTTP Response
+
+Status Codes <span style="opacity:0.1;">: Headers : Body</span>
+
+- 2XX - success
+- 3XX - redirects
+- 4XX - client error
+- 5XX - server error
+- [Wikipedia](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+
+----
+
+### HTTP Response
+
+<span style="opacity:0.1;">Status Codes :</span> Headers <span style="opacity:0.1;">: Body</span>
+
+![HTTP response headers](01_background/response_headers.png "HTTP response headers")
+
+
+Note:
+
+- `access-control-allow-origin` will come back up later (CORS)
+- `set-cookie` sets cookies from the server
+
+----
+
+### HTTP Response
+
+<span style="opacity:0.1;">Status Codes : Headers :</span> Body
+
+![HTTP response body](01_background/response_body.png "HTTP response body")
+
+---
+
+## Security
+
+- HTTPS and TLS
+- AutheNtication and AuthoriZation
+- Cross-origin security
+
+----
+
+### [HTTPS][https]
+
+<style>
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+</style>
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/SJJmoDZ3il8?si=b0WlKn-H17-pIHw-"
+  title="YouTube video player"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen>
+</iframe>
+
+<p class="text-sm">
+  Note! TLS replaced SSL, but they work similarly.
+</p>
+
+[aes]: https://en.wikipedia.org/wiki/Advanced_Encryption_Standard
+[https]: https://en.wikipedia.org/wiki/HTTPS
+[rsa]: https://en.wikipedia.org/wiki/RSA_(cryptosystem)
+[tls]: https://en.wikipedia.org/wiki/Transport_Layer_Security
+
+Note:
+
+- This video is old and since then TLS has replaced SSL, but works similarly at
+  a high level.
+- Note: We're not using HTTPS for local development.
+- Once a connection is established the browser will send the encrypted request
+  path, query, fragment, headers and body, and the server will encrypt the 
+  response data.
+
+----
+
+### AutheNtication and AuthoriZation
+
+- AuthN establishes _who_ you are
+- AuthZ establishes _what_ you can do
+
+Note:
+
+- Today we'll tackle AuthN, but won't really touch AuthZ
+- Django has a concept of Groups and Permissions that are great ways to 
+  implement AuthZ
+
+----
+
+### Cross-Origin Security
+
+- Why? Prevent badguys.com from moving money at yourbank.com
+- What is an [origin][rfc6454_origin]? `scheme://domain:port`
+- What is cross-origin? JS at origin A &rarr; API at origin B
+- How? Configure [cross-origin resource sharing][cors]
+
+[cors]: https://en.wikipedia.org/wiki/Cross-origin_resource_sharing
+[rfc6454_origin]: https://datatracker.ietf.org/doc/html/rfc6454#section-3.2
+
+Note:
+
+- [Julia Evans comic](https://drawings.jvns.ca/cors/)
+- Our Django API configures CORS using `django-cors-headers`
+
+---
+
+## CORS Lab
+
+[bit.ly/hd23be](https://bit.ly/hd23be) > Lab > [02 CORS Demo](../lab/02_cors_demo/)
+
+1. Time: 5m
+2. Run a local copy of the lab docs
+3. Test out allowed and disallowed origins
